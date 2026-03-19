@@ -11,6 +11,9 @@ def create_app(config_class=Config):
     migrate.init_app(app, db)
     limiter.init_app(app)
 
+    # Import models so Alembic can discover them
+    from app import models
+
     # TODO: Register blueprints
 
     return app
