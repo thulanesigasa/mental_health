@@ -29,3 +29,35 @@ A production-ready mental health platform designed to educate users and provide 
 - Secure Registration, Login, and Session Management
 - Scalable Educational Mental Health Modules
 - Support Directory & Contact Interface for Crisis Resources
+
+## 💻 Running the Application Locally
+
+1. **Clone the Repository**
+   ```bash
+   git clone git@github.com:thulanesigasa/mental_health.git
+   cd mental_health
+   ```
+
+2. **Create and Activate a Virtual Environment**
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. **Install Dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Initialize the Database**
+   *If starting fresh, run the following to apply migrations. Note: SQLite is used as the default fallback locally.*
+   ```bash
+   export FLASK_APP=run.py
+   flask db upgrade
+   ```
+
+5. **Run the Development Server**
+   ```bash
+   flask run
+   ```
+   *The application will securely serve your local instance at `http://127.0.0.1:5000`.*
