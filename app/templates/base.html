@@ -40,6 +40,9 @@
             <a href="{{ url_for('main.index') }}">Home</a>
             <a href="{{ url_for('modules.list_modules') }}">Modules</a>
             <a href="{{ url_for('support.directory') }}">Support Directory</a>
+            {% if session.get('is_admin') %}
+            <a href="{{ url_for('admin.dashboard') }}">Admin Dashboard</a>
+            {% endif %}
             {% if session.get('user_id') %}
             <a href="{{ url_for('auth.logout') }}">Logout</a>
             {% else %}

@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard - Serenity{% endblock %}
+
+{% block content %}
+<div class="mb-2">
+    <h1 class="mb-1 text-center">Administrator Control panel</h1>
+    <p class="text-secondary text-center">Manage secure educational data and crisis support records intelligently.</p>
+</div>
+
+<div class="mb-2">
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #E0E0E0; padding-bottom: 0.5rem;"
+        class="mb-1">
+        <h2>Educational Modules</h2>
+        <a href="{{ url_for('admin.module_create') }}" class="btn btn-primary" style="width: auto;">+ New Module</a>
+    </div>
+    {% if modules %}
+    <div style="overflow-x: auto;">
+        <table
+            style="width: 100%; border-collapse: collapse; background: var(--bg-secondary); border-radius: var(--border-radius); box-shadow: var(--shadow);">
+            <thead>
+                <tr style="border-bottom: 1px solid #CCC;">
+                    <th style="padding: 1rem; text-align: left;">ID</th>
+                    <th style="padding: 1rem; text-align: left;">Title</th>
+                    <th style="padding: 1rem; text-align: right;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for m in modules %}
+                <tr style="border-bottom: 1px solid #E0E0E0;">
+                    <td style="padding: 1rem;">{{ m.id }}</td>
+                    <td style="padding: 1rem; font-weight: 500;">{{ m.title }}</td>
+                    <td
+                        style="padding: 1rem; text-align: right; display: flex; justify-content: flex-end; gap: 0.5rem;">
+                        <a href="{{ url_for('admin.module_edit', id=m.id) }}" class="btn btn-outline"
+                            style="padding: 0.25rem 0.75rem; font-size: 0.85rem;">Edit</a>
+                        <form action="{{ url_for('admin.module_delete', id=m.id) }}" method="POST"
+                            style="display:inline;" onsubmit="return confirm('Please confirm permanent deletion.');">
+                            <button type="submit" class="btn"
+                                style="background-color: var(--error); color: white; padding: 0.25rem 0.75rem; font-size: 0.85rem;">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p class="text-secondary">No modules found in the database. Please utilize the seed script or add one manually.</p>
+    {% endif %}
+</div>
+
+<div class="mb-2">
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #E0E0E0; padding-bottom: 0.5rem;"
+        class="mb-1">
+        <h2>Support Resources</h2>
+        <a href="{{ url_for('admin.support_create') }}" class="btn btn-primary" style="width: auto;">+ New Resource</a>
+    </div>
+    {% if resources %}
+    <div style="overflow-x: auto;">
+        <table
+            style="width: 100%; border-collapse: collapse; background: var(--bg-secondary); border-radius: var(--border-radius); box-shadow: var(--shadow);">
+            <thead>
+                <tr style="border-bottom: 1px solid #CCC;">
+                    <th style="padding: 1rem; text-align: left;">ID</th>
+                    <th style="padding: 1rem; text-align: left;">Name</th>
+                    <th style="padding: 1rem; text-align: left;">Phone</th>
+                    <th style="padding: 1rem; text-align: right;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in resources %}
+                <tr style="border-bottom: 1px solid #E0E0E0;">
+                    <td style="padding: 1rem;">{{ r.id }}</td>
+                    <td style="padding: 1rem; font-weight: 500;">{{ r.name }}</td>
+                    <td style="padding: 1rem;">{{ r.phone_number }}</td>
+                    <td
+                        style="padding: 1rem; text-align: right; display: flex; justify-content: flex-end; gap: 0.5rem;">
+                        <a href="{{ url_for('admin.support_edit', id=r.id) }}" class="btn btn-outline"
+                            style="padding: 0.25rem 0.75rem; font-size: 0.85rem;">Edit</a>
+                        <form action="{{ url_for('admin.support_delete', id=r.id) }}" method="POST"
+                            style="display:inline;" onsubmit="return confirm('Please confirm permanent deletion.');">
+                            <button type="submit" class="btn"
+                                style="background-color: var(--error); color: white; padding: 0.25rem 0.75rem; font-size: 0.85rem;">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p class="text-secondary">No support resources defined in the database.</p>
+    {% endif %}
+</div>
+{% endblock %}

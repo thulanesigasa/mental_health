@@ -41,6 +41,7 @@ def login():
         if user and user.check_password(password):
             session.clear()
             session['user_id'] = user.id
+            session['is_admin'] = user.is_admin
             flash('Logged in successfully.', 'success')
             return redirect(url_for('main.index'))
             

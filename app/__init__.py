@@ -27,6 +27,9 @@ def create_app(config_class=Config):
     from app.views.support import bp as support_bp
     app.register_blueprint(support_bp)
 
+    from app.views.admin import bp as admin_bp
+    app.register_blueprint(admin_bp)
+
     @app.after_request
     def set_secure_headers(response):
         # Strict Content Security Policy
