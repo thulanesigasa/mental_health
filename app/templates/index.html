@@ -1,17 +1,19 @@
 {% extends "base.html" %}
 
-{% block title %}Home - Serenity{% endblock %}
+{% block title %}Home - Serenity Mental Health{% endblock %}
 
 {% block content %}
-<section class="hero"
-    style="text-align: center; padding: 4rem 1rem; background: var(--bg-secondary); border-radius: var(--border-radius); box-shadow: var(--shadow);">
-    <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Find Your Peace, At Your Pace.</h1>
-    <p style="font-size: 1.2rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem;">
-        Accessible mental health education and immediate support resources, designed gracefully for everyone.
+<section class="hero text-center mb-2">
+    <h1 class="mb-1">Find Your Peace, At Your Pace.</h1>
+    <p class="mb-2 text-secondary">
+        A secure space offering accessible mental health education and immediate support resources, designed gracefully
+        for everyone.
     </p>
-    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-        <a href="#" class="btn">Explore Modules</a>
-        <a href="#" class="btn" style="background-color: var(--text-primary);">Find Support</a>
+    <div class="hero-actions text-center">
+        <a href="{{ url_for('modules.list_modules') }}" class="btn btn-primary"
+            aria-label="Explore Educational Modules">Explore Modules</a>
+        <a href="{{ url_for('support.directory') }}" class="btn btn-outline"
+            aria-label="Find Immediate Crisis Support">Find Support</a>
     </div>
 </section>
 {% endblock %}

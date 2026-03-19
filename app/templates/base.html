@@ -1,40 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A comprehensive mental health platform for education and support.">
-    <title>{% block title %}Mental Health Platform{% endblock %}</title>
+    <meta name="description" content="A secure, accessible mental health platform for education and support resources.">
+    <title>{% block title %}Mental Health Platform - Serenity{% endblock %}</title>
+
+    <!-- SEO and Social Tags -->
+    <meta property="og:title" content="Serenity Mental Health Platform">
+    <meta property="og:description" content="Accessible mental health education and immediate crisis support.">
+
+    <!-- Schema.org Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Serenity Mental Health",
+      "url": "https://www.serenity.com"
+    }
+    </script>
+
     <!-- Modern Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Application Stylesheet -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
     <header>
-        <div class="nav-logo">
-            <a href="{{ url_for('main.index') }}">Serenity</a>
+        <div class="nav-brand">
+            <a href="{{ url_for('main.index') }}" aria-label="Serenity Home">Serenity</a>
         </div>
-        <nav class="nav-links" aria-label="Main Navigation">
+        <button id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Toggle Navigation Menu"
+            aria-expanded="false" aria-controls="nav-links">
+            &#9776;
+        </button>
+        <nav id="nav-links" class="nav-links" aria-label="Main Navigation">
             <a href="{{ url_for('main.index') }}">Home</a>
-            <a href="#">Modules</a>
-            <a href="#">Support</a>
+            <a href="{{ url_for('modules.list_modules') }}">Modules</a>
+            <a href="{{ url_for('support.directory') }}">Support Directory</a>
+            {% if session.get('user_id') %}
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
+            {% else %}
+            <a href="{{ url_for('auth.login') }}">Login / Register</a>
+            {% endif %}
         </nav>
     </header>
 
-    <main id="main-content">
-        {% with messages = get_flashed_messages(with_categories=true) %}
+    <main id="main-content" class="container" tabindex="-1">
+        <div id="flash-messages" aria-live="polite">
+            {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
-                {% for category, message in messages %}
-                    <div class="alert alert-{{ category if category != 'message' else 'info' }}" role="alert">{{ message }}</div>
-                {% endfor %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category if category != 'message' else 'info' }}" role="alert">
+                <span>{{ message }}</span>
+                <span aria-hidden="true" title="Dismiss">&times;</span>
+            </div>
+            {% endfor %}
             {% endif %}
-        {% endwith %}
+            {% endwith %}
+        </div>
 
         {% block content %}{% endblock %}
     </main>
 
-    <footer style="text-align: center; padding: 2rem; color: var(--text-secondary); margin-top: auto;">
-        <p>&copy; 2026 Serenity Mental Health Platform. Here for you.</p>
+    <footer class="text-center mt-2">
+        <p class="text-secondary">&copy; 2026 Serenity Mental Health Platform. Privacy and accessibility are our
+            priorities.</p>
     </footer>
+
+    <!-- Client-side Logic -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
+
 </html>

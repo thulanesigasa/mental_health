@@ -17,6 +17,9 @@ def create_app(config_class=Config):
     # Register blueprints
     from app.views.main import bp as main_bp
     app.register_blueprint(main_bp)
+    
+    from app.views.auth import bp as auth_bp
+    app.register_blueprint(auth_bp)
 
     @app.after_request
     def set_secure_headers(response):

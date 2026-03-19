@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Support Directory - Serenity{% endblock %}
+
+{% block content %}
+<div class="text-center mb-2">
+    <h2>Crisis Support & Resources</h2>
+    <p class="text-secondary">You are not alone. Please reach out to the contacts below if you need immediate help.</p>
+</div>
+
+<div class="modules-grid">
+    {% for resource in resources %}
+    <div class="support-item">
+        <h3 class="mb-1">{{ resource.name }}</h3>
+        <p class="mb-1">
+            📞 <a href="tel:{{ resource.phone_number }}" class="support-phone"
+                aria-label="Call {{ resource.name }} at {{ resource.phone_number }}">{{ resource.phone_number }}</a>
+        </p>
+        <p class="text-secondary">{{ resource.description }}</p>
+    </div>
+    {% else %}
+    <p class="text-center mt-2">Directory is being updated securely. For immediate emergencies, please dial your local
+        emergency services.</p>
+    {% endfor %}
+</div>
+{% endblock %}

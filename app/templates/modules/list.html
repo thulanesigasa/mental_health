@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Educational Modules - Serenity{% endblock %}
+
+{% block content %}
+<div class="mb-2 text-center">
+    <h2>Educational Modules</h2>
+    <p class="text-secondary">Explore resources to better understand mental well-being.</p>
+</div>
+
+<div class="modules-grid">
+    {% for module in modules %}
+    <article class="module-card">
+        <h3 class="mb-1">{{ module.title }}</h3>
+        <p class="text-secondary mb-1">{{ module.description }}</p>
+        <a href="{{ url_for('modules.detail', module_id=module.id) }}" class="btn btn-primary"
+            aria-label="Read more about {{ module.title }}">Read More</a>
+    </article>
+    {% else %}
+    <p class="text-center mt-2">No modules available at this moment. Please check back later.</p>
+    {% endfor %}
+</div>
+{% endblock %}

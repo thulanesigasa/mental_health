@@ -9,9 +9,9 @@ A production-ready mental health platform designed to educate users and provide 
 - **Frontend**: HTML5, Vanilla CSS, Vanilla JavaScript
 
 ## 🎨 UI/UX Design & Aesthetics
-- **Theme**: Minimalist, professional, and elegant (Beige / Crisp White, Deep Black, Dusty Gold accents)
-- **Responsiveness**: Mobile-first approach, fluid across all screens
-- **Accessibility**: strict adherence to WCAG 2.1 AA standards
+- **Theme**: Minimalist, professional, and elegant (Crisp White backgrounds, Deep Black text, Dusty Bronze/Gold accents)
+- **Responsiveness**: Strictly Mobile-first approach, fluid across all screens
+- **Accessibility**: strict adherence to WCAG 2.1 AA standards featuring proper ARIA labels and high contrast
 
 ## 🔒 Security & Data Protection
 - Defense against OWASP Top 10 vulnerabilities

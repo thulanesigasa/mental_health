@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}{{ module.title }} - Serenity{% endblock %}
+
+{% block content %}
+<article class="article-content mt-2">
+    <a href="{{ url_for('modules.list_modules') }}" class="text-secondary mb-1"
+        style="display:inline-block; text-decoration:none;">&larr; Back to Modules</a>
+    <h1 class="mb-1">{{ module.title }}</h1>
+    <div class="content text-secondary">
+        {{ module.content | safe }}
+    </div>
+</article>
+{% endblock %}
