@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A comprehensive mental health platform for education and support.">
+    <title>{% block title %}Mental Health Platform{% endblock %}</title>
+    <!-- Modern Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="nav-logo">
+            <a href="{{ url_for('main.index') }}">Serenity</a>
+        </div>
+        <nav class="nav-links" aria-label="Main Navigation">
+            <a href="{{ url_for('main.index') }}">Home</a>
+            <a href="#">Modules</a>
+            <a href="#">Support</a>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category if category != 'message' else 'info' }}" role="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer style="text-align: center; padding: 2rem; color: var(--text-secondary); margin-top: auto;">
+        <p>&copy; 2026 Serenity Mental Health Platform. Here for you.</p>
+    </footer>
+</body>
+</html>
