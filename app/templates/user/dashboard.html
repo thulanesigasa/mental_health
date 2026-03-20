@@ -9,8 +9,64 @@
 </div>
 
 <div class="modules-grid mb-2">
+    <!-- Mood Tracker Section -->
+    <div class="module-card animate-fade-up"
+        style="grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; text-align: center; border-color: rgba(255, 152, 0, 0.3);">
+        <h2 class="mb-1" style="font-weight: 500;">Daily Mood Tracker</h2>
+        <p class="text-secondary mb-1">How are you feeling today?</p>
+        <form method="POST" action="{{ url_for('user_bp.log_mood') }}"
+            style="display: flex; gap: 2rem; align-items: center; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem;">
+
+            <label style="cursor: pointer; display: flex; flex-direction: column; align-items: center;">
+                <input type="radio" name="score" value="1" required style="margin-bottom: 5px;">
+                <span style="font-size: 2.2rem; transition: transform 0.2s;"
+                    onmouseover="this.style.transform='scale(1.2)'"
+                    onmouseout="this.style.transform='scale(1)'">😢</span>
+            </label>
+
+            <label style="cursor: pointer; display: flex; flex-direction: column; align-items: center;">
+                <input type="radio" name="score" value="2" style="margin-bottom: 5px;">
+                <span style="font-size: 2.2rem; transition: transform 0.2s;"
+                    onmouseover="this.style.transform='scale(1.2)'"
+                    onmouseout="this.style.transform='scale(1)'">😕</span>
+            </label>
+
+            <label style="cursor: pointer; display: flex; flex-direction: column; align-items: center;">
+                <input type="radio" name="score" value="3" style="margin-bottom: 5px;">
+                <span style="font-size: 2.2rem; transition: transform 0.2s;"
+                    onmouseover="this.style.transform='scale(1.2)'"
+                    onmouseout="this.style.transform='scale(1)'">😐</span>
+            </label>
+
+            <label style="cursor: pointer; display: flex; flex-direction: column; align-items: center;">
+                <input type="radio" name="score" value="4" style="margin-bottom: 5px;">
+                <span style="font-size: 2.2rem; transition: transform 0.2s;"
+                    onmouseover="this.style.transform='scale(1.2)'"
+                    onmouseout="this.style.transform='scale(1)'">🙂</span>
+            </label>
+
+            <label style="cursor: pointer; display: flex; flex-direction: column; align-items: center;">
+                <input type="radio" name="score" value="5" style="margin-bottom: 5px;">
+                <span style="font-size: 2.2rem; transition: transform 0.2s;"
+                    onmouseover="this.style.transform='scale(1.2)'"
+                    onmouseout="this.style.transform='scale(1)'">😄</span>
+            </label>
+
+        </form>
+        <button onclick="document.querySelector('form[action=\'{{ url_for('user_bp.log_mood') }}\']').submit()"
+            class="btn btn-primary"
+            style="padding: 0 40px; height: 40px; line-height: 40px; font-size: 10px; width: auto;">Save Mood</button>
+
+        {% if user.mood_logs %}
+        <div style="margin-top: 1.5rem; width: 100%; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
+            <p class="text-secondary" style="font-size: 0.85rem;">Your latest entry was <strong>{{
+                    user.mood_logs[0].score }}/5</strong> on {{ user.mood_logs[0].timestamp.strftime('%Y-%m-%d') }}.</p>
+        </div>
+        {% endif %}
+    </div>
+
     <!-- Progress Section -->
-    <div class="module-card">
+    <div class="module-card animate-fade-up delay-1">
         <h2 class="mb-1" style="font-weight: 500;">Learning Progress</h2>
         <p class="text-secondary mb-1">Modules you have actively completed:</p>
         {% if user.completed_modules %}
@@ -32,7 +88,7 @@
     </div>
 
     <!-- Bookmarks Section -->
-    <div class="module-card">
+    <div class="module-card animate-fade-up delay-2">
         <h2 class="mb-1" style="font-weight: 500;">Saved Resources</h2>
         <p class="text-secondary mb-1">Contacts bookmarked for immediate secure access:</p>
         {% if user.bookmarked_resources %}

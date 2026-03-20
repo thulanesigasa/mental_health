@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, session, request
 from functools import wraps
 from app.extensions import db
-from app.models.user import User
+from app.models.user import User, MoodLog
 from app.models.module import Module
 from app.models.support import SupportResource
 
@@ -46,3 +46,17 @@ def complete_module(module_id):
         flash('Module specifically marked as completed! Great progress.', 'success')
     db.session.commit()
     return redirect(request.referrer or url_for('user_bp.dashboard'))
+
+@user_bp.route('/log_mood', methods=['POST'])
+@login_required
+def log_mood():
+    user = User.query.get(session['user_id'])
+    score = request.form.get('score', type=int)
+    if score and 1 <= score <= 5:
+        log = MoodLog(user_id=user.id, score=score)
+        db.session.add(log)
+        db.session.commit()
+        flash('Mood securely logged for today.', 'success')
+    else:
+        flash('Invalid mood score submitted.', 'error')
+    return redirect(url_for('user_bp.dashboard'))

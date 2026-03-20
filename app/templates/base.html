@@ -40,6 +40,7 @@
             <a href="{{ url_for('main.index') }}">Home</a>
             <a href="{{ url_for('modules.list_modules') }}">Modules</a>
             <a href="{{ url_for('support.directory') }}">Support Directory</a>
+            <a href="{{ url_for('main.breathe') }}" style="color: var(--accent-gold);">Exercises</a>
             {% if session.get('is_admin') %}
             <a href="{{ url_for('admin.dashboard') }}">Admin Dashboard</a>
             {% endif %}
@@ -74,8 +75,42 @@
             priorities.</p>
     </footer>
 
+    <!-- Floating Safe Exit Button -->
+    <button id="safe-exit-btn"
+        style="position: fixed; bottom: 20px; right: 20px; background-color: var(--error); color: white; border: none; padding: 12px 24px; border-radius: 50px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(255,82,82,0.4); z-index: 9999; display: flex; align-items: center; gap: 8px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; transition: transform 0.2s;"
+        aria-label="Quick Safe Exit" title="Click or press ESC 3 times quickly to redirect to Google"
+        onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <span aria-hidden="true" style="font-size: 1.2rem;">🚪</span> Safe Exit
+    </button>
+
     <!-- Client-side Logic -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        // Global Safe Exit Panic Logic
+        const quickExitUrl = "https://www.google.com";
+
+        document.getElementById('safe-exit-btn').addEventListener('click', function () {
+            window.location.replace(quickExitUrl);
+        });
+
+        let escapeKeyPresses = 0;
+        let escapeKeyTimeout;
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                escapeKeyPresses++;
+                clearTimeout(escapeKeyTimeout);
+
+                if (escapeKeyPresses >= 3) {
+                    window.location.replace(quickExitUrl);
+                }
+
+                escapeKeyTimeout = setTimeout(() => {
+                    escapeKeyPresses = 0;
+                }, 1000); // 3x ESC hits must securely happen within 1 second
+            }
+        });
+    </script>
 </body>
 
 </html>

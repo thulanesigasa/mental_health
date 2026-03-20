@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block title %}Guided Box Breathing - Serenity{% endblock %}
+
+{% block content %}
+<style>
+    .breathe-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 50vh;
+        text-align: center;
+        margin-top: 2rem;
+    }
+
+    .breathe-circle {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, rgba(255, 152, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%);
+        border: 2px solid var(--accent-gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 30px rgba(255, 152, 0, 0.2);
+        margin-bottom: 2rem;
+        /* Box breathing 16s cycle: Inhale(4)-Hold(4)-Exhale(4)-Hold(4) */
+        animation: breatheCycle 16s linear infinite;
+    }
+
+    .breathe-text {
+        font-size: 1.2rem;
+        font-weight: 500;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--text-primary);
+    }
+
+    @keyframes breatheCycle {
+        0% {
+            transform: scale(1);
+            box-shadow: 0 0 30px rgba(255, 152, 0, 0.4);
+        }
+
+        25% {
+            transform: scale(2);
+            box-shadow: 0 0 60px rgba(255, 152, 0, 0.8);
+        }
+
+        50% {
+            transform: scale(2);
+            box-shadow: 0 0 60px rgba(255, 152, 0, 0.8);
+        }
+
+        75% {
+            transform: scale(1);
+            box-shadow: 0 0 30px rgba(255, 152, 0, 0.4);
+        }
+
+        100% {
+            transform: scale(1);
+            box-shadow: 0 0 30px rgba(255, 152, 0, 0.4);
+        }
+    }
+
+    .breathe-text::after {
+        content: "Inhale";
+        animation: textContent 16s steps(1) infinite;
+    }
+
+    @keyframes textContent {
+        0% {
+            content: "Inhale";
+        }
+
+        25% {
+            content: "Hold";
+        }
+
+        50% {
+            content: "Exhale";
+        }
+
+        75% {
+            content: "Hold";
+        }
+
+        100% {
+            content: "Inhale";
+        }
+    }
+</style>
+
+<div class="mb-2 text-center animate-fade-up">
+    <h2 style="font-weight: 500;">Box Breathing Exercise</h2>
+    <p class="text-secondary" style="max-width: 600px; margin: 0 auto;">Follow the circle to regulate your nervous
+        system. Inhale as it expands, hold, exhale as it reduces, and hold again.</p>
+</div>
+
+<div class="breathe-container animate-fade-up delay-1">
+    <div class="breathe-circle">
+        <div class="breathe-text"></div>
+    </div>
+</div>
+
+<div class="text-center mt-2 animate-fade-up delay-2">
+    <a href="{{ url_for('modules.list_modules') }}" class="btn btn-outline" style="width: auto;">Return to Modules</a>
+</div>
+{% endblock %}
