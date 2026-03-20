@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mobile menu toggle
     const menuToggle = document.getElementById('mobile-menu-toggle');
     const navLinks = document.getElementById('nav-links');
-    
+
     if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', () => {
             const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';

@@ -115,7 +115,8 @@
         begin</p>
 
     <button id="breathe-control-btn"
-        style="margin-top: 20px; background: var(--accent-gold); color: #000; border: none; padding: 10px 30px; border-radius: 5px; font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: transform 0.2s;">Start
+        style="margin-top: 20px; background: var(--accent-gold); color: #000; border: none; padding: 10px 30px; border-radius: 5px; font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: transform 0.2s;"
+        onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Start
         Exercise</button>
 </div>
 
@@ -123,35 +124,4 @@
     <a href="{{ url_for('main.exercises_hub') }}" class="btn btn-outline" style="width: auto;"><i
             class="ph ph-arrow-left"></i> Return to Exercises</a>
 </div>
-
-<script>
-    const breatheCircle = document.getElementById('breathe-circle');
-    const breatheStatus = document.getElementById('breathe-status');
-    const breatheControlBtn = document.getElementById('breathe-control-btn');
-    const breatheStyleSheet = document.createElement('style');
-    document.head.appendChild(breatheStyleSheet);
-
-    breatheStyleSheet.innerHTML = `.breathe-text::after { animation-play-state: paused !important; }`;
-
-    let isBreathing = false;
-
-    breatheControlBtn.addEventListener('mouseover', () => { breatheControlBtn.style.transform = 'scale(1.05)'; });
-    breatheControlBtn.addEventListener('mouseout', () => { breatheControlBtn.style.transform = 'scale(1)'; });
-
-    breatheControlBtn.addEventListener('click', () => {
-        isBreathing = !isBreathing;
-
-        if (isBreathing) {
-            breatheCircle.style.animationPlayState = 'running';
-            breatheStyleSheet.innerHTML = `.breathe-text::after { animation-play-state: running !important; }`;
-            breatheStatus.innerText = "In progress. Press Pause to halt.";
-            breatheControlBtn.innerText = "Pause Exercise";
-        } else {
-            breatheCircle.style.animationPlayState = 'paused';
-            breatheStyleSheet.innerHTML = `.breathe-text::after { animation-play-state: paused !important; }`;
-            breatheStatus.innerText = "Paused. Press Start to resume.";
-            breatheControlBtn.innerText = "Start Exercise";
-        }
-    });
-</script>
 {% endblock %}

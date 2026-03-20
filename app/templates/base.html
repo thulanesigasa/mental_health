@@ -52,7 +52,7 @@
             <a href="{{ url_for('main.index') }}"><i class="ph ph-house"></i> Home</a>
             <a href="{{ url_for('modules.list_modules') }}"><i class="ph ph-books"></i> Modules</a>
             <a href="{{ url_for('support.directory') }}"><i class="ph ph-phone-call"></i> Support</a>
-            <a href="{{ url_for('main.exercises_hub') }}" style="color: var(--accent-gold);"><i class="ph ph-wind"></i>
+            <a href="{{ url_for('main.exercises_hub') }}"><i class="ph ph-wind"></i>
                 Exercises</a>
             {% if session.get('is_admin') %}
             <a href="{{ url_for('admin.dashboard') }}"><i class="ph ph-shield-check"></i> Admin</a>

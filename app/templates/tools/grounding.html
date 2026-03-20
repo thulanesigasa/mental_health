@@ -8,87 +8,90 @@
         acute anxiety or panic to systematically bring your physical focus back directly into the present moment.</p>
 </div>
 
-<div class="modules-grid animate-fade-up delay-1">
-    <div class="module-card" style="grid-column: 1 / -1; max-width: 600px; margin: 0 auto; width: 100%;">
+<div class="modules-grid animate-fade-up delay-1"
+    style="display: grid; grid-template-columns: 1fr; gap: 15px; max-width: 600px; margin: 0 auto; width: 100%;">
 
-        <div class="grounding-step mb-2" data-step="1">
-            <h3 style="color: var(--accent-gold); display: flex; align-items: center; gap: 10px; font-weight: 500;"><i
-                    class="ph ph-eye"></i> 5 Things You Can See</h3>
-            <div class="checkbox-list" style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
-                {% for i in range(5) %}
-                <label
-                    style="display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--text-primary); transition: all 0.2s;">
-                    <input type="checkbox"
-                        onchange="this.parentElement.style.textDecoration = this.checked ? 'line-through' : 'none'; this.parentElement.style.opacity = this.checked ? '0.5' : '1';">
-                    Identify a distinct object you can see around you right now
-                </label>
-                {% endfor %}
-            </div>
+    <div class="module-card text-center"
+        style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem;">
+        <h3 style="color: var(--accent-gold); display: flex; align-items: center; gap: 10px; font-weight: 500;"><i
+                class="ph ph-eye" style="font-size: 1.5rem;"></i> 5 Things You Can See</h3>
+        <p class="text-secondary mb-1" style="font-size: 0.95rem;">Identify distinct objects around you right now.</p>
+        <div style="display: flex; justify-content: center; gap: 15px; margin-top: 10px;">
+            {% for i in range(5) %}
+            <label style="cursor: pointer; display: flex; transition: all 0.2s;">
+                <input type="checkbox" class="grounding-checkbox"
+                    style="width: 25px; height: 25px; cursor: pointer; accent-color: var(--accent-gold);">
+            </label>
+            {% endfor %}
         </div>
-
-        <div class="grounding-step mb-2" data-step="2">
-            <h3 style="color: var(--accent-gold); display: flex; align-items: center; gap: 10px; font-weight: 500;"><i
-                    class="ph ph-hand-palm"></i> 4 Things You Can Feel</h3>
-            <div class="checkbox-list" style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
-                {% for i in range(4) %}
-                <label
-                    style="display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--text-primary); transition: all 0.2s;">
-                    <input type="checkbox"
-                        onchange="this.parentElement.style.textDecoration = this.checked ? 'line-through' : 'none'; this.parentElement.style.opacity = this.checked ? '0.5' : '1';">
-                    Notice a physical texture or temperature you can feel
-                </label>
-                {% endfor %}
-            </div>
-        </div>
-
-        <div class="grounding-step mb-2" data-step="3">
-            <h3 style="color: var(--accent-gold); display: flex; align-items: center; gap: 10px; font-weight: 500;"><i
-                    class="ph ph-ear"></i> 3 Things You Can Hear</h3>
-            <div class="checkbox-list" style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
-                {% for i in range(3) %}
-                <label
-                    style="display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--text-primary); transition: all 0.2s;">
-                    <input type="checkbox"
-                        onchange="this.parentElement.style.textDecoration = this.checked ? 'line-through' : 'none'; this.parentElement.style.opacity = this.checked ? '0.5' : '1';">
-                    Listen closely and identify a specific background sound
-                </label>
-                {% endfor %}
-            </div>
-        </div>
-
-        <div class="grounding-step mb-2" data-step="4">
-            <h3 style="color: var(--accent-gold); display: flex; align-items: center; gap: 10px; font-weight: 500;"><i
-                    class="ph ph-wind"></i> 2 Things You Can Smell</h3>
-            <div class="checkbox-list" style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
-                {% for i in range(2) %}
-                <label
-                    style="display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--text-primary); transition: all 0.2s;">
-                    <input type="checkbox"
-                        onchange="this.parentElement.style.textDecoration = this.checked ? 'line-through' : 'none'; this.parentElement.style.opacity = this.checked ? '0.5' : '1';">
-                    Find a subtle scent, or actively recall a favorite smell
-                </label>
-                {% endfor %}
-            </div>
-        </div>
-
-        <div class="grounding-step" data-step="5">
-            <h3 style="color: var(--accent-gold); display: flex; align-items: center; gap: 10px; font-weight: 500;"><i
-                    class="ph ph-heart"></i> 1 Good Thing</h3>
-            <div class="checkbox-list" style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
-                <label
-                    style="display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--text-primary); transition: all 0.2s;">
-                    <input type="checkbox"
-                        onchange="this.parentElement.style.textDecoration = this.checked ? 'line-through' : 'none'; this.parentElement.style.opacity = this.checked ? '0.5' : '1';">
-                    Acknowledge one deeply positive thing about yourself or your day
-                </label>
-            </div>
-        </div>
-
     </div>
+
+    <div class="module-card text-center"
+        style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem;">
+        <h3 style="color: var(--accent-gold); display: flex; align-items: center; gap: 10px; font-weight: 500;"><i
+                class="ph ph-hand-palm" style="font-size: 1.5rem;"></i> 4 Things You Can Feel</h3>
+        <p class="text-secondary mb-1" style="font-size: 0.95rem;">Notice a physical texture or temperature you can
+            feel.</p>
+        <div style="display: flex; justify-content: center; gap: 15px; margin-top: 10px;">
+            {% for i in range(4) %}
+            <label style="cursor: pointer; display: flex; transition: all 0.2s;">
+                <input type="checkbox" class="grounding-checkbox"
+                    style="width: 25px; height: 25px; cursor: pointer; accent-color: var(--accent-gold);">
+            </label>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="module-card text-center"
+        style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem;">
+        <h3 style="color: var(--accent-gold); display: flex; align-items: center; gap: 10px; font-weight: 500;"><i
+                class="ph ph-ear" style="font-size: 1.5rem;"></i> 3 Things You Can Hear</h3>
+        <p class="text-secondary mb-1" style="font-size: 0.95rem;">Listen closely and identify a specific background
+            sound.</p>
+        <div style="display: flex; justify-content: center; gap: 15px; margin-top: 10px;">
+            {% for i in range(3) %}
+            <label style="cursor: pointer; display: flex; transition: all 0.2s;">
+                <input type="checkbox" class="grounding-checkbox"
+                    style="width: 25px; height: 25px; cursor: pointer; accent-color: var(--accent-gold);">
+            </label>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="module-card text-center"
+        style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem;">
+        <h3 style="color: var(--accent-gold); display: flex; align-items: center; gap: 10px; font-weight: 500;"><i
+                class="ph ph-wind" style="font-size: 1.5rem;"></i> 2 Things You Can Smell</h3>
+        <p class="text-secondary mb-1" style="font-size: 0.95rem;">Find a subtle scent, or actively recall a favorite
+            smell.</p>
+        <div style="display: flex; justify-content: center; gap: 15px; margin-top: 10px;">
+            {% for i in range(2) %}
+            <label style="cursor: pointer; display: flex; transition: all 0.2s;">
+                <input type="checkbox" class="grounding-checkbox"
+                    style="width: 25px; height: 25px; cursor: pointer; accent-color: var(--accent-gold);">
+            </label>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="module-card text-center"
+        style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem;">
+        <h3 style="color: var(--accent-gold); display: flex; align-items: center; gap: 10px; font-weight: 500;"><i
+                class="ph ph-heart" style="font-size: 1.5rem;"></i> 1 Good Thing</h3>
+        <p class="text-secondary mb-1" style="font-size: 0.95rem;">Acknowledge one deeply positive thing about yourself
+            or your day.</p>
+        <div style="display: flex; justify-content: center; gap: 15px; margin-top: 10px;">
+            <label style="cursor: pointer; display: flex; transition: all 0.2s;">
+                <input type="checkbox" class="grounding-checkbox"
+                    style="width: 25px; height: 25px; cursor: pointer; accent-color: var(--accent-gold);">
+            </label>
+        </div>
+    </div>
+
 </div>
 
 <div class="text-center mt-2 animate-fade-up delay-2">
-    <a href="{{ url_for('modules.list_modules') }}" class="btn btn-outline" style="width: auto;"><i
-            class="ph ph-arrow-left"></i> Return to Modules</a>
+    <a href="{{ url_for('main.exercises_hub') }}" class="btn btn-outline" style="width: auto;"><i
+            class="ph ph-arrow-left"></i> Return to Exercises</a>
 </div>
 {% endblock %}
