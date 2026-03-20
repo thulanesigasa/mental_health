@@ -387,6 +387,69 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* ==========================================================================
+   Advanced Accessibility (A11y) Overrides
+   ========================================================================== */
+.high-contrast {
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+}
+
+.high-contrast .module-card,
+.high-contrast header,
+.high-contrast .hero-section,
+.high-contrast .nav-links,
+.high-contrast .alert {
+    backdrop-filter: none !important;
+    background: #000000 !important;
+    border: 2px solid #FFFFFF !important;
+    box-shadow: none !important;
+}
+
+.high-contrast a,
+.high-contrast .nav-links a {
+    color: #FFFF00 !important;
+    text-decoration: underline !important;
+}
+
+.high-contrast .btn-primary {
+    background-color: #FFFF00 !important;
+    color: #000000 !important;
+    border: 2px solid #FFFFFF !important;
+}
+
+.high-contrast .btn-outline {
+    color: #FFFF00 !important;
+    border-color: #FFFF00 !important;
+}
+
+.high-contrast .text-secondary {
+    color: #E0E0E0 !important;
+}
+
+/* Typography Operations */
+.text-large {
+    font-size: 130% !important;
+}
+
+.text-large h1 {
+    font-size: 3rem;
+}
+
+.text-large h2 {
+    font-size: 2.2rem;
+}
+
+.text-large h3 {
+    font-size: 1.8rem;
+}
+
+.text-large p,
+.text-large a,
+.text-large button {
+    font-size: 1.15rem;
+}
+
 /* Animations & Interactivity Phase 3 */
 @keyframes fadeUp {
     from {

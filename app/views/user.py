@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, session, request
 from functools import wraps
+from datetime import datetime, timedelta
 from app.extensions import db
 from app.models.user import User, MoodLog
 from app.models.module import Module
@@ -20,7 +21,14 @@ def login_required(f):
 @login_required
 def dashboard():
     user = User.query.get(session['user_id'])
-    return render_template('user/dashboard.html', user=user)
+    # Secure Analytics Range Mapping
+    seven_days_ago = datetime.utcnow() - timedelta(days=7)
+    recent_moods = MoodLog.query.filter(
+        MoodLog.user_id == user.id,
+        MoodLog.timestamp >= seven_days_ago
+    ).order_by(MoodLog.timestamp.asc()).all()
+    
+    return render_template('user/dashboard.html', user=user, recent_moods=recent_moods)
 
 @user_bp.route('/bookmark/<int:resource_id>', methods=['POST'])
 @login_required

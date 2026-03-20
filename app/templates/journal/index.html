@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}My Private Journal - Serenity{% endblock %}
+
+{% block content %}
+<div class="mb-2 text-center animate-fade-up">
+    <h2 style="font-weight: 500;">My Private Journal</h2>
+    <p class="text-secondary">A secure, encrypted space strictly bound to your account for personal reflections.</p>
+</div>
+
+<div class="text-center mb-2 animate-fade-up delay-1">
+    <a href="{{ url_for('journal_bp.create') }}" class="btn btn-primary" style="width: auto;">Write New Entry</a>
+</div>
+
+<div class="modules-grid animate-fade-up delay-2">
+    {% for entry in entries %}
+    <article class="module-card">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+            <h3 style="color: var(--text-primary); margin: 0; font-weight: 500;">{{ entry.title }}</h3>
+            <span style="font-size: 0.8rem; color: var(--text-secondary);">{{ entry.created_at.strftime('%Y-%m-%d')
+                }}</span>
+        </div>
+        <p class="text-secondary mb-1" style="white-space: pre-wrap; font-size: 0.95rem;">{{ entry.content[:150] }}{% if
+            entry.content|length > 150 %}...{% endif %}</p>
+
+        <div
+            style="display: flex; gap: 1rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; margin-top: 1rem;">
+            <a href="{{ url_for('journal_bp.edit', entry_id=entry.id) }}"
+                style="color: var(--success); font-weight: 600; font-size: 0.85rem; text-decoration: none; text-transform: uppercase;">Edit</a>
+            <form action="{{ url_for('journal_bp.delete', entry_id=entry.id) }}" method="POST" style="margin: 0;"
+                onsubmit="return confirm('Permanently delete this entry? This action cannot be reversed.');">
+                <button type="submit"
+                    style="background: none; border: none; color: var(--error); font-weight: 600; font-size: 0.85rem; padding: 0; cursor: pointer; text-transform: uppercase;">Delete</button>
+            </form>
+        </div>
+    </article>
+    {% else %}
+    <p class="text-center text-secondary"
+        style="grid-column: 1 / -1; padding: 2rem; border: 1px dashed rgba(255,255,255,0.2); border-radius: 8px;">Your
+        journal is currently empty. Start writing to process your thoughts safely.</p>
+    {% endfor %}
+</div>
+{% endblock %}

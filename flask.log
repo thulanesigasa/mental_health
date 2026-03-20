@@ -1,7 +1,1 @@
 nohup: ignoring input
-/home/wethinkcode/Desktop/Mobile-Web_App/mental_health/venv/lib/python3.10/site-packages/flask_limiter/extension.py:333: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
-  warnings.warn(
- * Serving Flask app 'run.py'
- * Debug mode: on
-Address already in use
-Port 5000 is in use by another program. Either identify and stop that program, or start the server with a different port.

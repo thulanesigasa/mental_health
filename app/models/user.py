@@ -30,6 +30,7 @@ class User(db.Model):
     bookmarked_resources = db.relationship('SupportResource', secondary=user_resources, lazy='subquery',
         backref=db.backref('users_bookmarked', lazy=True))
     mood_logs = db.relationship('MoodLog', backref='user', lazy=True, order_by='MoodLog.timestamp.desc()', cascade="all, delete-orphan")
+    journal_entries = db.relationship('JournalEntry', backref='user', lazy=True, order_by='JournalEntry.created_at.desc()', cascade="all, delete-orphan")
 
     def __repr__(self):
         return f'<User {self.email}>'

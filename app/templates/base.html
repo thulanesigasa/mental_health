@@ -46,6 +46,7 @@
             {% endif %}
             {% if session.get('user_id') %}
             <a href="{{ url_for('user_bp.dashboard') }}">My Dashboard</a>
+            <a href="{{ url_for('journal_bp.index') }}">My Journal</a>
             <a href="{{ url_for('auth.logout') }}">Logout</a>
             {% else %}
             <a href="{{ url_for('auth.login') }}">Login / Register</a>
@@ -75,6 +76,18 @@
             priorities.</p>
     </footer>
 
+    <!-- Advanced Accessibility (A11y) Panel -->
+    <div id="a11y-panel"
+        style="position: fixed; bottom: 80px; right: 20px; z-index: 9998; display: flex; flex-direction: column; gap: 10px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); padding: 15px; border-radius: 12px; backdrop-filter: blur(10px); box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+        <strong
+            style="color: var(--text-primary); font-size: 0.85rem; text-transform: uppercase; margin-bottom: 5px; text-align: center; letter-spacing: 1px;">Accessibility</strong>
+        <button id="a11y-contrast-toggle" class="btn btn-outline"
+            style="padding: 8px 15px; font-size: 0.8rem; width: 100%;" aria-pressed="false">Toggle High
+            Contrast</button>
+        <button id="a11y-text-toggle" class="btn btn-outline" style="padding: 8px 15px; font-size: 0.8rem; width: 100%;"
+            aria-pressed="false">Toggle Large Text</button>
+    </div>
+
     <!-- Floating Safe Exit Button -->
     <button id="safe-exit-btn"
         style="position: fixed; bottom: 20px; right: 20px; background-color: var(--error); color: white; border: none; padding: 12px 24px; border-radius: 50px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(255,82,82,0.4); z-index: 9999; display: flex; align-items: center; gap: 8px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; transition: transform 0.2s;"
@@ -84,6 +97,7 @@
     </button>
 
     <!-- Client-side Logic -->
+    <script src="{{ url_for('static', filename='js/accessibility.js') }}"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     <script>
         // Global Safe Exit Panic Logic

@@ -15,6 +15,7 @@ def create_app(config_class=Config):
 
     # Import models so Alembic can discover them
     from app import models
+    from app.models import journal
 
     # Register blueprints
     from app.views.main import bp as main_bp
@@ -34,6 +35,9 @@ def create_app(config_class=Config):
 
     from app.views.user import user_bp
     app.register_blueprint(user_bp)
+
+    from app.views.journal import journal_bp
+    app.register_blueprint(journal_bp)
 
     @app.after_request
     def set_secure_headers(response):
