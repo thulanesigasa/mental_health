@@ -1,7 +1,7 @@
 /* Mental Health Platform - ptechsolutions Dark Theme */
 :root {
-    --bg-primary: #1F1C2C;
-    /* Dark background */
+    --bg-primary: #000000;
+    /* Deep black background */
     --bg-secondary: rgba(255, 255, 255, 0.05);
     /* Glassmorphic pane */
     --text-primary: rgba(255, 255, 255, 0.9);

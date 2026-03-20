@@ -9,7 +9,7 @@ A production-ready mental health platform designed to educate users and provide 
 - **Frontend**: HTML5, Vanilla CSS, Vanilla JavaScript
 
 ## 🎨 UI/UX Design & Aesthetics
-- **Theme**: PTechSolutions Dark Glassmorphic Theme (Deep `#1F1C2C` background, crisp light text, and signature Tangerine/Orange accents)
+- **Theme**: PTechSolutions Dark Glassmorphic Theme (Deep `#000000` background, crisp light text, and signature Tangerine/Orange accents)
 - **Responsiveness**: Strictly Mobile-first approach, fluid across all screens
 - **Accessibility**: strict adherence to WCAG 2.1 AA standards featuring proper ARIA labels and high contrast
 
