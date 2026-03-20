@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Page Not Found - Serenity{% endblock %}
+
+{% block content %}
+<div class="module-card animate-fade-up"
+    style="max-width: 600px; margin: 4rem auto; text-align: center; padding: 4rem 2rem;">
+    <i class="ph ph-detective"
+        style="font-size: 4rem; color: var(--accent-gold); opacity: 0.8; display: block; margin-bottom: 1.5rem;"></i>
+    <h1 style="font-weight: 600; margin-bottom: 1rem;">404 - Breath In, Breath Out</h1>
+    <p class="text-secondary" style="margin-bottom: 2.5rem; line-height: 1.6;">We couldn't find the page you're looking
+        for. Let's find our way back to a peaceful space together.</p>
+    <a href="{{ url_for('main.index') }}" class="btn btn-primary" style="width: auto; padding: 0 40px;"><i
+            class="ph ph-house"></i> Return Home</a>
+</div>
+{% endblock %}

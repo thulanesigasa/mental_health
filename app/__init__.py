@@ -1,6 +1,6 @@
-from flask import Flask
+from flask import Flask, render_template
 from config import Config
-from app.extensions import db, migrate, limiter
+from app.extensions import db, migrate, limiter, mail
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -10,7 +10,6 @@ def create_app(config_class=Config):
     db.init_app(app)
     migrate.init_app(app, db)
     limiter.init_app(app)
-    from app.extensions import mail
     mail.init_app(app)
 
     # Import models so Alembic can discover them
@@ -18,29 +17,16 @@ def create_app(config_class=Config):
     from app.models import journal
 
     # Register blueprints
-    from app.views.main import bp as main_bp
-    app.register_blueprint(main_bp)
-    
-    from app.views.auth import bp as auth_bp
-    app.register_blueprint(auth_bp)
-
-    from app.views.modules import bp as modules_bp
-    app.register_blueprint(modules_bp)
-
-    from app.views.support import bp as support_bp
-    app.register_blueprint(support_bp)
-
-    from app.views.admin import bp as admin_bp
-    app.register_blueprint(admin_bp)
-
-    from app.views.user import user_bp
-    app.register_blueprint(user_bp)
-
-    from app.views.journal import journal_bp
-    app.register_blueprint(journal_bp)
-
-    from app.views.seo import seo_bp
-    app.register_blueprint(seo_bp)
+    from app.views import main, auth, modules, support, admin, user, journal, seo, forum
+    app.register_blueprint(main.bp)
+    app.register_blueprint(auth.bp)
+    app.register_blueprint(modules.bp)
+    app.register_blueprint(support.bp)
+    app.register_blueprint(admin.bp)
+    app.register_blueprint(user.user_bp)
+    app.register_blueprint(journal.journal_bp)
+    app.register_blueprint(seo.seo_bp)
+    app.register_blueprint(forum.bp)
 
     @app.after_request
     def set_secure_headers(response):
@@ -58,5 +44,15 @@ def create_app(config_class=Config):
         response.headers['X-Frame-Options'] = 'DENY'
         response.headers['X-XSS-Protection'] = '1; mode=block'
         return response
+
+    # Error Handlers
+    @app.errorhandler(404)
+    def not_found_error(error):
+        return render_template('errors/404.html'), 404
+
+    @app.errorhandler(500)
+    def internal_error(error):
+        db.session.rollback()
+        return render_template('errors/500.html'), 500
 
     return app

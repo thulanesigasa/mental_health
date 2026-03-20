@@ -4,6 +4,8 @@ from app.extensions import db
 from app.models.user import User
 from app.models.module import Module
 from app.models.support import SupportResource
+from app.models.journal import JournalEntry
+from app.models.forum import ForumPost
 
 bp = Blueprint('admin', __name__, url_prefix='/admin')
 
@@ -26,7 +28,18 @@ def admin_required(f):
 def dashboard():
     modules = Module.query.all()
     resources = SupportResource.query.all()
-    return render_template('admin/dashboard.html', modules=modules, resources=resources)
+    
+    # Analytics
+    stats = {
+        'total_users': User.query.count(),
+        'total_journals': JournalEntry.query.count(),
+        'total_forum_posts': ForumPost.query.count()
+    }
+    
+    return render_template('admin/dashboard.html', 
+                           modules=modules, 
+                           resources=resources,
+                           stats=stats)
 
 @bp.route('/module/new', methods=['GET', 'POST'])
 @admin_required

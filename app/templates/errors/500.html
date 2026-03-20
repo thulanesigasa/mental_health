@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Internal Server Error - Serenity{% endblock %}
+
+{% block content %}
+<div class="module-card animate-fade-up"
+    style="max-width: 600px; margin: 4rem auto; text-align: center; padding: 4rem 2rem;">
+    <i class="ph ph-warning-circle"
+        style="font-size: 4rem; color: var(--accent-gold); opacity: 0.8; display: block; margin-bottom: 1.5rem;"></i>
+    <h1 style="font-weight: 600; margin-bottom: 1rem;">Something Went Wrong</h1>
+    <p class="text-secondary" style="margin-bottom: 2.5rem; line-height: 1.6;">Our servers are having a moment of
+        turbulence. Please try again shortly. Your peace is our priority.</p>
+    <a href="{{ url_for('main.index') }}" class="btn btn-primary" style="width: auto; padding: 0 40px;"><i
+            class="ph ph-house"></i> Return Home</a>
+</div>
+{% endblock %}

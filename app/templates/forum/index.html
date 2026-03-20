@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Peer Forum - Serenity{% endblock %}
+
+{% block content %}
+<div class="mb-2 d-flex justify-content-between align-items-center animate-fade-up">
+    <div>
+        <h2 style="font-weight: 500;">Anonymous Peer Forum</h2>
+        <p class="text-secondary">Share your thoughts and find support from the community, completely anonymously.</p>
+    </div>
+    <a href="{{ url_for('forum.create') }}" class="btn btn-primary"><i class="ph ph-plus-circle"></i> New Post</a>
+</div>
+
+<div class="modules-grid animate-fade-up delay-1">
+    {% for post in posts %}
+    <article class="module-card">
+        <h3 style="color: var(--accent-gold); font-weight: 500;">{{ post.title }}</h3>
+        <p class="text-secondary" style="margin-top: 10px; font-size: 0.95rem; line-height: 1.6;">{{ post.content }}</p>
+        <div
+            style="margin-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;">
+            <span class="text-secondary"><i class="ph ph-user-circle"></i> {{ post.pseudonym }}</span>
+            <span class="text-secondary"><i class="ph ph-calendar-blank"></i> {{ post.created_at.strftime('%b %d, %Y')
+                }}</span>
+        </div>
+    </article>
+    {% else %}
+    <div class="module-card text-center" style="grid-column: 1 / -1; padding: 3rem;">
+        <i class="ph ph-chat-centered-dots" style="font-size: 3rem; color: var(--accent-gold); opacity: 0.5;"></i>
+        <p class="text-secondary" style="margin-top: 15px;">No posts yet. Be the first to share something!</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

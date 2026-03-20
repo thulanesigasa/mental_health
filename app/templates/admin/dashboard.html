@@ -3,8 +3,33 @@
 
 {% block content %}
 <div class="mb-2">
-    <h1 class="mb-1 text-center">Administrator Control panel</h1>
+    <h1 class="mb-1 text-center">Administrator Control Panel</h1>
     <p class="text-secondary text-center">Manage secure educational data and crisis support records intelligently.</p>
+</div>
+
+<!-- Admin Stats Grid -->
+<div class="modules-grid mb-2 animate-fade-up">
+    <div class="module-card text-center" style="padding: 1.5rem;">
+        <i class="ph ph-users"
+            style="font-size: 2rem; color: var(--accent-gold); margin-bottom: 0.5rem; display: block;"></i>
+        <h3 style="font-weight: 500; font-size: 2rem;">{{ stats.total_users }}</h3>
+        <p class="text-secondary" style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Total Users
+        </p>
+    </div>
+    <div class="module-card text-center" style="padding: 1.5rem;">
+        <i class="ph ph-notebook"
+            style="font-size: 2rem; color: var(--accent-gold); margin-bottom: 0.5rem; display: block;"></i>
+        <h3 style="font-weight: 500; font-size: 2rem;">{{ stats.total_journals }}</h3>
+        <p class="text-secondary" style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Journal
+            Entries</p>
+    </div>
+    <div class="module-card text-center" style="padding: 1.5rem;">
+        <i class="ph ph-chat-centered-text"
+            style="font-size: 2rem; color: var(--accent-gold); margin-bottom: 0.5rem; display: block;"></i>
+        <h3 style="font-weight: 500; font-size: 2rem;">{{ stats.total_forum_posts }}</h3>
+        <p class="text-secondary" style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Forum Posts
+        </p>
+    </div>
 </div>
 
 <div class="mb-2">

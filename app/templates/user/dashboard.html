@@ -2,10 +2,16 @@
 {% block title %}My Dashboard - Serenity{% endblock %}
 
 {% block content %}
-<div class="mb-2 text-center" style="margin-top: 2rem;">
+<div class="mb-2 text-center" style="margin-top: 2rem; position: relative;">
     <h1 style="font-weight: 600;">Welcome, <span style="font-weight: 100; color: var(--accent-gold);">{{
             user.email.split('@')[0] }}</span></h1>
     <p class="text-secondary">Your personal secure space for tracking progress and saved resources.</p>
+    <div style="margin-top: 1rem;">
+        <a href="{{ url_for('user_bp.export_data') }}" class="btn btn-outline"
+            style="width: auto; padding: 0 20px; font-size: 10px;">
+            <i class="ph ph-export"></i> Export My Data
+        </a>
+    </div>
 </div>
 
 <div class="modules-grid mb-2">

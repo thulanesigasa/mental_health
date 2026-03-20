@@ -1,8 +1,13 @@
-from flask import Blueprint, render_template, redirect, url_for, flash, session, request
+import datetime
+import io
+import csv
+import json
+from flask import Blueprint, render_template, session, redirect, url_for, flash, make_response, request
 from functools import wraps
 from datetime import datetime, timedelta
 from app.extensions import db
 from app.models.user import User, MoodLog
+from app.models.journal import JournalEntry
 from app.models.module import Module
 from app.models.support import SupportResource
 
@@ -28,7 +33,45 @@ def dashboard():
         MoodLog.timestamp >= seven_days_ago
     ).order_by(MoodLog.timestamp.asc()).all()
     
-    return render_template('user/dashboard.html', user=user, recent_moods=recent_moods)
+    return render_template('user/dashboard.html', logs=recent_moods, user=user) # Adjusted to pass existing recent_moods as 'logs' for consistency with instruction's template variables
+
+@user_bp.route('/export')
+@login_required
+def export_data():
+    user_id = session.get('user_id')
+    if not user_id:
+        return redirect(url_for('auth.login'))
+        
+    # Fetch data
+    mood_logs = MoodLog.query.filter_by(user_id=user_id).order_by(MoodLog.timestamp.asc()).all()
+    journal_entries = JournalEntry.query.filter_by(user_id=user_id).order_by(JournalEntry.created_at.asc()).all()
+    
+    # Create CSV
+    output = io.StringIO()
+    writer = csv.writer(output)
+    
+    # Mood Logs Header and Data
+    writer.writerow(['--- MOOD LOGS ---'])
+    writer.writerow(['Date', 'Mood Value', 'Note'])
+    for log in mood_logs:
+        writer.writerow([log.timestamp.strftime('%Y-%m-%d %H:%M:%S'), log.score, log.note if hasattr(log, 'note') else '']) # Assuming MoodLog has a 'score' and potentially 'note'
+    
+    writer.writerow([]) # Spacer
+    
+    # Journal Entries Header and Data
+    writer.writerow(['--- JOURNAL ENTRIES ---'])
+    writer.writerow(['Date', 'Title', 'Content'])
+    for entry in journal_entries:
+        writer.writerow([entry.created_at.strftime('%Y-%m-%d %H:%M:%S'), entry.title, entry.content])
+        
+    output.seek(0)
+    
+    response = make_response(output.getvalue())
+    filename = f"serenity_data_export_{datetime.now().strftime('%Y%m%d')}.csv"
+    response.headers["Content-Disposition"] = f"attachment; filename={filename}"
+    response.headers["Content-type"] = "text/csv"
+    
+    return response
 
 @user_bp.route('/bookmark/<int:resource_id>', methods=['POST'])
 @login_required

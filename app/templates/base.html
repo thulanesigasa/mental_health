@@ -5,9 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A secure, accessible mental health platform for education and support resources.">
-    <title>{% block title %}Mental Health Platform - Serenity{% endblock %}</title>
+    <title>{% block title %}Serenity - Mental Health Platform{% endblock %}</title>
 
-    <!-- SEO and Social Tags -->
+    <!-- PWA -->
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <meta name="theme-color" content="#000000">
+    <link rel="apple-touch-icon" href="https://img.icons8.com/plasticine/100/leaf.png">
+
+    <!-- SEO -->and Social Tags -->
     <meta property="og:title" content="Serenity Mental Health Platform">
     <meta property="og:description" content="Accessible mental health education and immediate crisis support.">
 
@@ -51,6 +56,7 @@
         <nav id="nav-links" class="nav-links" aria-label="Main Navigation">
             <a href="{{ url_for('main.index') }}"><i class="ph ph-house"></i> Home</a>
             <a href="{{ url_for('modules.list_modules') }}"><i class="ph ph-books"></i> Modules</a>
+            <a href="{{ url_for('forum.index') }}"><i class="ph ph-users-three"></i> Forum</a>
             <a href="{{ url_for('support.directory') }}"><i class="ph ph-phone-call"></i> Support</a>
             <a href="{{ url_for('main.exercises_hub') }}"><i class="ph ph-wind"></i>
                 Exercises</a>
@@ -120,7 +126,6 @@
     {% endif %}
 
     <!-- Client-side Logic -->
-    <script src="{{ url_for('static', filename='js/accessibility.js') }}"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     <script>
         // Global Safe Exit Panic Logic
