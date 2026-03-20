@@ -2,21 +2,43 @@
 {% block title %}Educational Modules - Serenity{% endblock %}
 
 {% block content %}
-<div class="mb-2 text-center">
+<div class="mb-2 text-center animate-fade-up">
     <h2>Educational Modules</h2>
     <p class="text-secondary">Explore resources to better understand mental well-being.</p>
 </div>
 
+{% if user %}
+<div class="module-card animate-fade-up delay-1" style="margin-bottom: 2rem; padding: 2rem;">
+    <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.5rem; font-weight: 500;">Your Learning
+        Journey</h3>
+    {% set total_modules = modules|length %}
+    {% set completed = user.completed_modules|length %}
+    {% set pct = (completed / total_modules * 100)|round|int if total_modules > 0 else 0 %}
+    <div
+        style="display: flex; justify-content: space-between; font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 0.5rem;">
+        <span>{{ completed }} out of {{ total_modules }} completed</span>
+        <span style="color: var(--accent-gold); font-weight: 600;">{{ pct }}%</span>
+    </div>
+    <div class="progress-container">
+        <div class="progress-bar" style="width: {{ pct }}%;"></div>
+    </div>
+</div>
+{% endif %}
+
 <div class="modules-grid">
     {% for module in modules %}
-    <article class="module-card">
+    <article class="module-card animate-fade-up delay-2">
+        <div class="tags">
+            <span class="tag">Education</span>
+            <span class="tag">~5 min read</span>
+        </div>
         <h3 class="mb-1">{{ module.title }}</h3>
         <p class="text-secondary mb-1">{{ module.description }}</p>
         <a href="{{ url_for('modules.detail', module_id=module.id) }}" class="btn btn-primary"
             aria-label="Read more about {{ module.title }}">Read More</a>
     </article>
     {% else %}
-    <p class="text-center mt-2">No modules available at this moment. Please check back later.</p>
+    <p class="text-center mt-2 animate-fade-up">No modules available at this moment. Please check back later.</p>
     {% endfor %}
 </div>
 {% endblock %}

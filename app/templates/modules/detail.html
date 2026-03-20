@@ -19,5 +19,17 @@
         </form>
     </div>
     {% endif %}
+
+    {% if next_module %}
+    <div class="module-card text-center mt-2 animate-fade-up delay-2"
+        style="background: rgba(255,255,255,0.02); padding: 2.5rem; border: dashed 1px rgba(255,152,0,0.3);">
+        <h3
+            style="font-size: 0.9rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem;">
+            Continue your journey</h3>
+        <h2 class="mb-1" style="color: var(--text-primary); font-weight: 500;">{{ next_module.title }}</h2>
+        <a href="{{ url_for('modules.detail', module_id=next_module.id) }}" class="btn btn-primary mt-1"
+            style="width: auto;">Up Next : View Module</a>
+    </div>
+    {% endif %}
 </article>
 {% endblock %}
