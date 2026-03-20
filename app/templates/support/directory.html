@@ -9,8 +9,17 @@
 
 <div class="modules-grid">
     {% for resource in resources %}
-    <div class="support-item">
-        <h3 class="mb-1">{{ resource.name }}</h3>
+    <div class="support-item" style="position: relative;">
+        <h3 class="mb-1">{{ resource.name }}
+            {% if session.get('user_id') %}
+            <form method="POST" action="{{ url_for('user_bp.bookmark_resource', resource_id=resource.id) }}"
+                style="display:inline; position: absolute; right: 2rem; top: 2rem;">
+                <button type="submit"
+                    style="background: transparent; border: 1px solid var(--accent-gold); color: var(--accent-gold); padding: 5px 10px; border-radius: 4px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; font-size: 10px;"
+                    aria-label="Bookmark {{ resource.name }}">Toggle Bookmark 🔖</button>
+            </form>
+            {% endif %}
+        </h3>
         <p class="mb-1">
             📞 <a href="tel:{{ resource.phone_number }}" class="support-phone"
                 aria-label="Call {{ resource.name }} at {{ resource.phone_number }}">{{ resource.phone_number }}</a>

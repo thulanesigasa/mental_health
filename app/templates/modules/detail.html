@@ -9,5 +9,15 @@
     <div class="content text-secondary">
         {{ module.content | safe }}
     </div>
+
+    {% if session.get('user_id') %}
+    <div class="mt-2" style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 2rem;">
+        <form method="POST" action="{{ url_for('user_bp.complete_module', module_id=module.id) }}" class="text-left">
+            <button type="submit" class="btn btn-outline"
+                style="width: auto; padding: 0 40px; height: 50px; line-height: 50px;">Mark Module as Complete
+                &check;</button>
+        </form>
+    </div>
+    {% endif %}
 </article>
 {% endblock %}

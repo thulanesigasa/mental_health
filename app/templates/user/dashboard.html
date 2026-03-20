@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}My Dashboard - Serenity{% endblock %}
+
+{% block content %}
+<div class="mb-2 text-center" style="margin-top: 2rem;">
+    <h1 style="font-weight: 600;">Welcome, <span style="font-weight: 100; color: var(--accent-gold);">{{
+            user.email.split('@')[0] }}</span></h1>
+    <p class="text-secondary">Your personal secure space for tracking progress and saved resources.</p>
+</div>
+
+<div class="modules-grid mb-2">
+    <!-- Progress Section -->
+    <div class="module-card">
+        <h2 class="mb-1" style="font-weight: 500;">Learning Progress</h2>
+        <p class="text-secondary mb-1">Modules you have actively completed:</p>
+        {% if user.completed_modules %}
+        <ul style="list-style: none; padding: 0;">
+            {% for module in user.completed_modules %}
+            <li style="padding: 1rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                <strong style="color: var(--text-primary);">{{ module.title }}</strong><br>
+                <a href="{{ url_for('modules.detail', module_id=module.id) }}"
+                    style="color: var(--accent-gold); font-size: 0.85rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;">Review
+                    Module &rarr;</a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p style="color: rgba(255, 255, 255, 0.3); font-style: italic;">You haven't completed any modules yet.</p>
+        <a href="{{ url_for('modules.list_modules') }}" class="btn btn-outline mt-1"
+            style="padding: 0 20px; height: 40px; line-height: 40px; font-size: 10px; width: 100%;">Start Learning</a>
+        {% endif %}
+    </div>
+
+    <!-- Bookmarks Section -->
+    <div class="module-card">
+        <h2 class="mb-1" style="font-weight: 500;">Saved Resources</h2>
+        <p class="text-secondary mb-1">Contacts bookmarked for immediate secure access:</p>
+        {% if user.bookmarked_resources %}
+        <ul style="list-style: none; padding: 0;">
+            {% for resource in user.bookmarked_resources %}
+            <li
+                style="padding: 1rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); display: flex; justify-content: space-between; align-items: start;">
+                <div>
+                    <strong style="color: var(--text-primary);">{{ resource.name }}</strong><br>
+                    <a href="tel:{{ resource.phone_number }}"
+                        style="color: var(--accent-gold); font-size: 0.9rem; text-decoration: none; font-weight: 500; display: inline-block; margin-top: 5px;">📞
+                        {{ resource.phone_number }}</a>
+                </div>
+                <form method="POST" action="{{ url_for('user_bp.bookmark_resource', resource_id=resource.id) }}"
+                    style="display:inline; margin-left: 10px;">
+                    <button type="submit"
+                        style="background: transparent; border: 1px solid var(--accent-gold); color: var(--accent-gold); padding: 5px 10px; border-radius: 4px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; font-size: 10px;">Remove</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p style="color: rgba(255, 255, 255, 0.3); font-style: italic;">No emergency contacts currently bookmarked.</p>
+        <a href="{{ url_for('support.directory') }}" class="btn btn-outline mt-1"
+            style="padding: 0 20px; height: 40px; line-height: 40px; font-size: 10px; width: 100%;">Find Contacts</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

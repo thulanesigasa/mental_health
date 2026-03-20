@@ -48,22 +48,22 @@ def seed_database():
                 print(f"Adding module: {mod_data['title']}")
                 db.session.add(Module(**mod_data))
 
-        # 3. Support Resources
+        # 3. Support Resources (South African Localized)
         resources_data = [
             {
-                "name": "National Crisis Hotline",
-                "phone_number": "988",
-                "description": "Available 24/7. Free and confidential support for people in distress, prevention and crisis resources."
+                "name": "SADAG Suicide Crisis Line",
+                "phone_number": "0800 567 567",
+                "description": "Available 24/7. Providing dedicated, professional counseling and support to those in crisis."
             },
             {
-                "name": "Veterans Crisis Line",
-                "phone_number": "988 (Press 1)",
-                "description": "Connect with the Veterans Crisis Line to reach caring, qualified responders specifically trained to support Veterans."
+                "name": "Lifeline South Africa",
+                "phone_number": "0861 322 322",
+                "description": "Offering 24-hour emotional support and trauma counseling. We are here to listen."
             },
             {
-                "name": "The Trevor Project",
-                "phone_number": "1-866-488-7386",
-                "description": "Information and support to LGBTQ young people 24/7, all year round."
+                "name": "Gender-Based Violence Command Centre",
+                "phone_number": "0800 428 428",
+                "description": "A 24/7 call centre assisting victims of gender-based violence."
             }
         ]
 
