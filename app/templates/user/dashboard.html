@@ -18,38 +18,43 @@
             style="display: flex; gap: 2rem; align-items: center; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem;">
 
             <label style="cursor: pointer; display: flex; flex-direction: column; align-items: center;">
-                <input type="radio" name="score" value="1" required style="margin-bottom: 5px;">
-                <span style="font-size: 2.2rem; transition: transform 0.2s;"
-                    onmouseover="this.style.transform='scale(1.2)'"
-                    onmouseout="this.style.transform='scale(1)'">😢</span>
+                <input type="radio" name="score" value="1" required style="margin-bottom: 10px;">
+                <span
+                    style="display:inline-block; width: 40px; height: 40px; line-height: 40px; border-radius: 50%; border: 1px solid var(--accent-gold); font-size: 1.2rem; font-weight: bold; transition: all 0.2s;"
+                    onmouseover="this.style.backgroundColor='var(--accent-gold)'; this.style.color='#000';"
+                    onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--text-primary)';">1</span>
             </label>
 
             <label style="cursor: pointer; display: flex; flex-direction: column; align-items: center;">
-                <input type="radio" name="score" value="2" style="margin-bottom: 5px;">
-                <span style="font-size: 2.2rem; transition: transform 0.2s;"
-                    onmouseover="this.style.transform='scale(1.2)'"
-                    onmouseout="this.style.transform='scale(1)'">😕</span>
+                <input type="radio" name="score" value="2" style="margin-bottom: 10px;">
+                <span
+                    style="display:inline-block; width: 40px; height: 40px; line-height: 40px; border-radius: 50%; border: 1px solid var(--accent-gold); font-size: 1.2rem; font-weight: bold; transition: all 0.2s;"
+                    onmouseover="this.style.backgroundColor='var(--accent-gold)'; this.style.color='#000';"
+                    onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--text-primary)';">2</span>
             </label>
 
             <label style="cursor: pointer; display: flex; flex-direction: column; align-items: center;">
-                <input type="radio" name="score" value="3" style="margin-bottom: 5px;">
-                <span style="font-size: 2.2rem; transition: transform 0.2s;"
-                    onmouseover="this.style.transform='scale(1.2)'"
-                    onmouseout="this.style.transform='scale(1)'">😐</span>
+                <input type="radio" name="score" value="3" style="margin-bottom: 10px;">
+                <span
+                    style="display:inline-block; width: 40px; height: 40px; line-height: 40px; border-radius: 50%; border: 1px solid var(--accent-gold); font-size: 1.2rem; font-weight: bold; transition: all 0.2s;"
+                    onmouseover="this.style.backgroundColor='var(--accent-gold)'; this.style.color='#000';"
+                    onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--text-primary)';">3</span>
             </label>
 
             <label style="cursor: pointer; display: flex; flex-direction: column; align-items: center;">
-                <input type="radio" name="score" value="4" style="margin-bottom: 5px;">
-                <span style="font-size: 2.2rem; transition: transform 0.2s;"
-                    onmouseover="this.style.transform='scale(1.2)'"
-                    onmouseout="this.style.transform='scale(1)'">🙂</span>
+                <input type="radio" name="score" value="4" style="margin-bottom: 10px;">
+                <span
+                    style="display:inline-block; width: 40px; height: 40px; line-height: 40px; border-radius: 50%; border: 1px solid var(--accent-gold); font-size: 1.2rem; font-weight: bold; transition: all 0.2s;"
+                    onmouseover="this.style.backgroundColor='var(--accent-gold)'; this.style.color='#000';"
+                    onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--text-primary)';">4</span>
             </label>
 
             <label style="cursor: pointer; display: flex; flex-direction: column; align-items: center;">
-                <input type="radio" name="score" value="5" style="margin-bottom: 5px;">
-                <span style="font-size: 2.2rem; transition: transform 0.2s;"
-                    onmouseover="this.style.transform='scale(1.2)'"
-                    onmouseout="this.style.transform='scale(1)'">😄</span>
+                <input type="radio" name="score" value="5" style="margin-bottom: 10px;">
+                <span
+                    style="display:inline-block; width: 40px; height: 40px; line-height: 40px; border-radius: 50%; border: 1px solid var(--accent-gold); font-size: 1.2rem; font-weight: bold; transition: all 0.2s;"
+                    onmouseover="this.style.backgroundColor='var(--accent-gold)'; this.style.color='#000';"
+                    onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--text-primary)';">5</span>
             </label>
 
         </form>
@@ -99,7 +104,7 @@
                 <div>
                     <strong style="color: var(--text-primary);">{{ resource.name }}</strong><br>
                     <a href="tel:{{ resource.phone_number }}"
-                        style="color: var(--accent-gold); font-size: 0.9rem; text-decoration: none; font-weight: 500; display: inline-block; margin-top: 5px;">📞
+                        style="color: var(--accent-gold); font-size: 0.9rem; text-decoration: none; font-weight: 500; display: inline-block; margin-top: 5px;">Tel:
                         {{ resource.phone_number }}</a>
                 </div>
                 <form method="POST" action="{{ url_for('user_bp.bookmark_resource', resource_id=resource.id) }}"
