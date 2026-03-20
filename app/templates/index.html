@@ -3,17 +3,72 @@
 {% block title %}Home - Serenity Mental Health{% endblock %}
 
 {% block content %}
-<section class="hero text-center mb-2">
-    <h1 class="mb-1">Find Your Peace, At Your Pace.</h1>
-    <p class="mb-2 text-secondary">
+<!-- Hero Section -->
+<section class="hero text-center mb-2" style="margin-top: 2rem;">
+    <h1 class="mb-1" style="font-weight: 600;">Find Your Peace, <br><span
+            style="font-weight: 100; color: var(--text-secondary);">At Your Pace.</span></h1>
+    <p class="mb-2 text-secondary" style="max-width: 600px; margin: 0 auto 2rem auto;">
         A secure space offering accessible mental health education and immediate support resources, designed gracefully
-        for everyone.
+        for everyone. Transforming challenges into opportunities and goals into reality.
     </p>
-    <div class="hero-actions text-center">
-        <a href="{{ url_for('modules.list_modules') }}" class="btn btn-primary"
-            aria-label="Explore Educational Modules">Explore Modules</a>
-        <a href="{{ url_for('support.directory') }}" class="btn btn-outline"
-            aria-label="Find Immediate Crisis Support">Find Support</a>
+    <div class="hero-actions text-center" style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+        <a href="{{ url_for('modules.list_modules') }}" class="btn btn-primary" aria-label="Explore Educational Modules"
+            style="width: auto;">Explore Modules</a>
+        <a href="{{ url_for('support.directory') }}" class="btn btn-outline" aria-label="Find Immediate Crisis Support"
+            style="width: auto;">Find Support</a>
+    </div>
+</section>
+
+<!-- Features / What We Offer -->
+<section class="mb-2" style="margin-top: 5rem;">
+    <div class="text-center mb-2">
+        <h2 style="font-size: 2.5rem; font-weight: 500;">Our <span style="font-weight: 100;">Features</span></h2>
+        <p class="text-secondary mb-2">Dedicated resources driving your mental well-being and growth.</p>
+    </div>
+    <div class="modules-grid">
+        <div class="module-card text-center" style="padding: 3rem 2rem; transition: transform 0.3s; cursor: default;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">📖</div>
+            <h3 class="mb-1" style="color: var(--text-primary);">Educational Modules</h3>
+            <p class="text-secondary mb-1">Access curated, expert-reviewed content covering a variety of mental health
+                topics including anxiety, depression, and burnout.</p>
+            <a href="{{ url_for('modules.list_modules') }}"
+                style="color: var(--accent-gold); text-transform: uppercase; letter-spacing: 2px; font-size: 12px; font-weight: 500; text-decoration: none;">Read
+                More &rarr;</a>
+        </div>
+        <div class="module-card text-center" style="padding: 3rem 2rem; transition: transform 0.3s; cursor: default;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🤝</div>
+            <h3 class="mb-1" style="color: var(--text-primary);">Support Directory</h3>
+            <p class="text-secondary mb-1">Instantly find emergency hotlines, professional therapists, and community
+                support groups available 24/7 globally.</p>
+            <a href="{{ url_for('support.directory') }}"
+                style="color: var(--accent-gold); text-transform: uppercase; letter-spacing: 2px; font-size: 12px; font-weight: 500; text-decoration: none;">Get
+                Help &rarr;</a>
+        </div>
+        <div class="module-card text-center" style="padding: 3rem 2rem; transition: transform 0.3s; cursor: default;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🔒</div>
+            <h3 class="mb-1" style="color: var(--text-primary);">Secure & Private</h3>
+            <p class="text-secondary mb-1">Your data is yours. We implement industry-leading encryption and strict data
+                privacy standards to ensure your peace of mind.</p>
+            <a href="{{ url_for('auth.register') }}"
+                style="color: var(--accent-gold); text-transform: uppercase; letter-spacing: 2px; font-size: 12px; font-weight: 500; text-decoration: none;">Join
+                Us &rarr;</a>
+        </div>
+    </div>
+</section>
+
+<!-- About Us -->
+<section class="hero mb-2"
+    style="background: transparent; border: none; box-shadow: none; padding: 4rem 0; margin-top: 3rem;">
+    <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+        <h2 class="mb-1" style="font-size: 3rem; font-weight: 500;">Why We Built <span
+                style="font-weight: 100;">Serenity</span></h2>
+        <p class="text-secondary mb-2" style="max-width: 800px; font-size: 1.1rem; line-height: 1.8;">
+            We believe that mental health is as important as physical health. In today's fast-paced world, finding
+            reliable, digestible,
+            and immediate support can be overwhelming. We created this platform to bridge the gap—offering a serene,
+            beautifully designed
+            environment where you can learn about yourself and connect with the help you need, without any friction.
+        </p>
     </div>
 </section>
 {% endblock %}
