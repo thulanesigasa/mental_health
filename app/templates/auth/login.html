@@ -12,6 +12,10 @@
         <div class="form-group">
             <label for="password">Password</label>
             <input type="password" id="password" name="password" class="form-control" required>
+            <div class="text-right mt-1" style="text-align: right;">
+                <a href="{{ url_for('auth.reset_password_request') }}"
+                    style="color: var(--accent-gold); font-size: 0.85rem; text-decoration: none;">Forgot Password?</a>
+            </div>
         </div>
         <button type="submit" class="btn btn-primary">Log In</button>
     </form>

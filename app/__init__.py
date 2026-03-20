@@ -10,6 +10,8 @@ def create_app(config_class=Config):
     db.init_app(app)
     migrate.init_app(app, db)
     limiter.init_app(app)
+    from app.extensions import mail
+    mail.init_app(app)
 
     # Import models so Alembic can discover them
     from app import models
