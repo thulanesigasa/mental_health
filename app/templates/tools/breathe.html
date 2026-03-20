@@ -105,39 +105,52 @@
         system. Inhale as it expands, hold, exhale as it reduces, and hold again.</p>
 </div>
 
-<div class="breathe-container animate-fade-up delay-1">
-    <div class="breathe-circle" id="breathe-circle">
+<div class="breathe-container animate-fade-up delay-1"
+    style="display: flex; flex-direction: column; align-items: center;">
+    <div class="breathe-circle" id="breathe-circle" style="animation-play-state: paused; cursor: default;">
         <div class="breathe-text" id="breathe-text"></div>
     </div>
     <p class="text-secondary" id="breathe-status"
-        style="font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase;">Click circle to begin</p>
+        style="font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; margin-top: 15px;">Press Start to
+        begin</p>
+
+    <button id="breathe-control-btn"
+        style="margin-top: 20px; background: var(--accent-gold); color: #000; border: none; padding: 10px 30px; border-radius: 5px; font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: transform 0.2s;">Start
+        Exercise</button>
 </div>
 
 <div class="text-center mt-2 animate-fade-up delay-2">
-    <a href="{{ url_for('modules.list_modules') }}" class="btn btn-outline" style="width: auto;"><i
-            class="ph ph-arrow-left"></i> Return to Modules</a>
+    <a href="{{ url_for('main.exercises_hub') }}" class="btn btn-outline" style="width: auto;"><i
+            class="ph ph-arrow-left"></i> Return to Exercises</a>
 </div>
 
 <script>
     const breatheCircle = document.getElementById('breathe-circle');
     const breatheStatus = document.getElementById('breathe-status');
+    const breatheControlBtn = document.getElementById('breathe-control-btn');
     const breatheStyleSheet = document.createElement('style');
     document.head.appendChild(breatheStyleSheet);
 
+    breatheStyleSheet.innerHTML = `.breathe-text::after { animation-play-state: paused !important; }`;
+
     let isBreathing = false;
 
-    breatheCircle.addEventListener('click', () => {
+    breatheControlBtn.addEventListener('mouseover', () => { breatheControlBtn.style.transform = 'scale(1.05)'; });
+    breatheControlBtn.addEventListener('mouseout', () => { breatheControlBtn.style.transform = 'scale(1)'; });
+
+    breatheControlBtn.addEventListener('click', () => {
         isBreathing = !isBreathing;
 
         if (isBreathing) {
             breatheCircle.style.animationPlayState = 'running';
-            // Inject a running state forcefully into the CSS pseudo element logic parsing
             breatheStyleSheet.innerHTML = `.breathe-text::after { animation-play-state: running !important; }`;
-            breatheStatus.innerText = "Click circle to pause output";
+            breatheStatus.innerText = "In progress. Press Pause to halt.";
+            breatheControlBtn.innerText = "Pause Exercise";
         } else {
             breatheCircle.style.animationPlayState = 'paused';
             breatheStyleSheet.innerHTML = `.breathe-text::after { animation-play-state: paused !important; }`;
-            breatheStatus.innerText = "Paused. Click circle to resume";
+            breatheStatus.innerText = "Paused. Press Start to resume.";
+            breatheControlBtn.innerText = "Start Exercise";
         }
     });
 </script>

@@ -10,8 +10,7 @@ def sitemap():
     pages = []
     # Static pages
     ten_days_ago = (datetime.datetime.now() - datetime.timedelta(days=10)).date().isoformat()
-    # Explicitly omitting /tools/grounding since it isn't registered yet! I'll add it later or omit it temporarily.
-    for rule in ['main.index', 'support.directory', 'auth.login', 'auth.register', 'main.breathe']:
+    for rule in ['main.index', 'support.directory', 'auth.login', 'auth.register', 'main.exercises_hub', 'main.breathe', 'main.grounding']:
         url = url_for(rule, _external=True)
         pages.append([url, ten_days_ago])
         

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Interactive Exercises - Serenity{% endblock %}
+
+{% block content %}
+<div class="mb-2 text-center animate-fade-up">
+    <h2 style="font-weight: 500;">Interactive Exercises</h2>
+    <p class="text-secondary" style="max-width: 600px; margin: 0 auto;">Dedicated tools designed to help you quickly
+        regulate your nervous system and manage anxiety directly within your browser.</p>
+</div>
+
+<div class="modules-grid animate-fade-up delay-1">
+    <article class="module-card text-center"
+        style="display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 2rem;">
+        <div>
+            <h3
+                style="color: var(--accent-gold); display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 500;">
+                <i class="ph ph-wind" style="font-size: 1.8rem;"></i> Box Breathing</h3>
+            <p class="text-secondary" style="margin-top: 15px; font-size: 0.95rem;">Regulate your nervous system through
+                a structured 16-second optical respiratory cycle.</p>
+        </div>
+        <a href="{{ url_for('main.breathe') }}" class="btn btn-outline" style="margin-top: 25px; width: 100%;">Start
+            Exercise</a>
+    </article>
+
+    <article class="module-card text-center"
+        style="display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 2rem;">
+        <div>
+            <h3
+                style="color: var(--accent-gold); display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 500;">
+                <i class="ph ph-anchor" style="font-size: 1.8rem;"></i> 5-4-3-2-1 Grounding</h3>
+            <p class="text-secondary" style="margin-top: 15px; font-size: 0.95rem;">Manage active panic by anchoring
+                your physical senses firmly back into the present moment.</p>
+        </div>
+        <a href="{{ url_for('main.grounding') }}" class="btn btn-outline" style="margin-top: 25px; width: 100%;">Start
+            Exercise</a>
+    </article>
+</div>
+{% endblock %}

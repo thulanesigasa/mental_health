@@ -52,10 +52,8 @@
             <a href="{{ url_for('main.index') }}"><i class="ph ph-house"></i> Home</a>
             <a href="{{ url_for('modules.list_modules') }}"><i class="ph ph-books"></i> Modules</a>
             <a href="{{ url_for('support.directory') }}"><i class="ph ph-phone-call"></i> Support</a>
-            <a href="{{ url_for('main.breathe') }}" style="color: var(--accent-gold);"><i class="ph ph-wind"></i>
-                Breathe</a>
-            <a href="{{ url_for('main.grounding') }}" style="color: var(--accent-gold);"><i class="ph ph-anchor"></i>
-                Grounding</a>
+            <a href="{{ url_for('main.exercises_hub') }}" style="color: var(--accent-gold);"><i class="ph ph-wind"></i>
+                Exercises</a>
             {% if session.get('is_admin') %}
             <a href="{{ url_for('admin.dashboard') }}"><i class="ph ph-shield-check"></i> Admin</a>
             {% endif %}
@@ -112,13 +110,14 @@
     </div>
 
     <!-- Floating Safe Exit Button Themed -->
+    {% if session.get('user_id') %}
     <button id="safe-exit-btn"
-        style="position: fixed; bottom: 20px; right: 20px; background: rgba(0,0,0,0.8); color: var(--error); border: 2px solid var(--error); padding: 12px 24px; border-radius: 50px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(255,82,82,0.2); z-index: 9999; display: flex; align-items: center; gap: 8px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; transition: transform 0.2s, background 0.2s, color 0.2s; backdrop-filter: blur(10px);"
+        style="position: fixed; bottom: 20px; right: 20px; background: var(--accent-gold); color: #000000; border: none; padding: 12px 24px; border-radius: 50px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(255,152,0,0.4); z-index: 9999; display: flex; align-items: center; gap: 8px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; transition: transform 0.2s; backdrop-filter: blur(10px);"
         aria-label="Quick Safe Exit" title="Click or press ESC 3 times quickly to redirect to Google"
-        onmouseover="this.style.transform='scale(1.05)'; this.style.background='var(--error)'; this.style.color='#FFFFFF';"
-        onmouseout="this.style.transform='scale(1)'; this.style.background='rgba(0,0,0,0.8)'; this.style.color='var(--error)';">
+        onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
         <i class="ph ph-door-open" style="font-size: 1.2rem;"></i> Safe Exit
     </button>
+    {% endif %}
 
     <!-- Client-side Logic -->
     <script src="{{ url_for('static', filename='js/accessibility.js') }}"></script>

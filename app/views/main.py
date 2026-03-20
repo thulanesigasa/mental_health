@@ -6,10 +6,14 @@ bp = Blueprint('main', __name__)
 def index():
     return render_template('index.html')
 
-@bp.route('/tools/breathe')
+@bp.route('/exercises')
+def exercises_hub():
+    return render_template('tools/index.html')
+
+@bp.route('/exercises/breathe')
 def breathe():
     return render_template('tools/breathe.html')
 
-@bp.route('/tools/grounding')
+@bp.route('/exercises/grounding')
 def grounding():
     return render_template('tools/grounding.html')
