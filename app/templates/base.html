@@ -23,6 +23,18 @@
 
     <!-- Modern Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Open Graph Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.url }}">
+    <meta property="og:site_name" content="Serenity Mental Health Platform">
+    {% if request.url %}
+    <link rel="canonical" href="{{ request.url }}">
+    {% endif %}
+
     <!-- Application Stylesheet -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
@@ -37,19 +49,22 @@
             &#9776;
         </button>
         <nav id="nav-links" class="nav-links" aria-label="Main Navigation">
-            <a href="{{ url_for('main.index') }}">Home</a>
-            <a href="{{ url_for('modules.list_modules') }}">Modules</a>
-            <a href="{{ url_for('support.directory') }}">Support Directory</a>
-            <a href="{{ url_for('main.breathe') }}" style="color: var(--accent-gold);">Exercises</a>
+            <a href="{{ url_for('main.index') }}"><i class="ph ph-house"></i> Home</a>
+            <a href="{{ url_for('modules.list_modules') }}"><i class="ph ph-books"></i> Modules</a>
+            <a href="{{ url_for('support.directory') }}"><i class="ph ph-phone-call"></i> Support</a>
+            <a href="{{ url_for('main.breathe') }}" style="color: var(--accent-gold);"><i class="ph ph-wind"></i>
+                Breathe</a>
+            <a href="{{ url_for('main.grounding') }}" style="color: var(--accent-gold);"><i class="ph ph-anchor"></i>
+                Grounding</a>
             {% if session.get('is_admin') %}
-            <a href="{{ url_for('admin.dashboard') }}">Admin Dashboard</a>
+            <a href="{{ url_for('admin.dashboard') }}"><i class="ph ph-shield-check"></i> Admin</a>
             {% endif %}
             {% if session.get('user_id') %}
-            <a href="{{ url_for('user_bp.dashboard') }}">My Dashboard</a>
-            <a href="{{ url_for('journal_bp.index') }}">My Journal</a>
-            <a href="{{ url_for('auth.logout') }}">Logout</a>
+            <a href="{{ url_for('user_bp.dashboard') }}"><i class="ph ph-user"></i> Dashboard</a>
+            <a href="{{ url_for('journal_bp.index') }}"><i class="ph ph-notebook"></i> Journal</a>
+            <a href="{{ url_for('auth.logout') }}"><i class="ph ph-sign-out"></i> Logout</a>
             {% else %}
-            <a href="{{ url_for('auth.login') }}">Login / Register</a>
+            <a href="{{ url_for('auth.login') }}"><i class="ph ph-sign-in"></i> Login</a>
             {% endif %}
         </nav>
     </header>
@@ -77,23 +92,32 @@
     </footer>
 
     <!-- Advanced Accessibility (A11y) Panel -->
+    <button id="a11y-trigger"
+        style="position: fixed; bottom: 80px; left: 20px; z-index: 9998; background: rgba(0,0,0,0.8); border: 2px solid rgba(255,255,255,0.2); border-radius: 50%; width: 50px; height: 50px; cursor: pointer; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px); box-shadow: 0 4px 15px rgba(0,0,0,0.5); color: var(--text-primary); transition: transform 0.2s; font-size: 1.5rem;"
+        aria-label="Toggle Accessibility Menu" onmouseover="this.style.transform='scale(1.1)'"
+        onmouseout="this.style.transform='scale(1)'">
+        <i class="ph ph-universal-access"></i>
+    </button>
+
     <div id="a11y-panel"
-        style="position: fixed; bottom: 80px; right: 20px; z-index: 9998; display: flex; flex-direction: column; gap: 10px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); padding: 15px; border-radius: 12px; backdrop-filter: blur(10px); box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+        style="position: fixed; bottom: 140px; left: 20px; z-index: 9998; display: none; flex-direction: column; gap: 10px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); padding: 15px; border-radius: 12px; backdrop-filter: blur(10px); box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
         <strong
             style="color: var(--text-primary); font-size: 0.85rem; text-transform: uppercase; margin-bottom: 5px; text-align: center; letter-spacing: 1px;">Accessibility</strong>
         <button id="a11y-contrast-toggle" class="btn btn-outline"
-            style="padding: 8px 15px; font-size: 0.8rem; width: 100%;" aria-pressed="false">Toggle High
-            Contrast</button>
-        <button id="a11y-text-toggle" class="btn btn-outline" style="padding: 8px 15px; font-size: 0.8rem; width: 100%;"
-            aria-pressed="false">Toggle Large Text</button>
+            style="padding: 8px 15px; font-size: 0.8rem; width: 100%; display: flex; align-items: center; justify-content: center; gap: 5px;"
+            aria-pressed="false"><i class="ph ph-contrast"></i> Toggle High Contrast</button>
+        <button id="a11y-text-toggle" class="btn btn-outline"
+            style="padding: 8px 15px; font-size: 0.8rem; width: 100%; display: flex; align-items: center; justify-content: center; gap: 5px;"
+            aria-pressed="false"><i class="ph ph-text-height"></i> Toggle Large Text</button>
     </div>
 
-    <!-- Floating Safe Exit Button -->
+    <!-- Floating Safe Exit Button Themed -->
     <button id="safe-exit-btn"
-        style="position: fixed; bottom: 20px; right: 20px; background-color: var(--error); color: white; border: none; padding: 12px 24px; border-radius: 50px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(255,82,82,0.4); z-index: 9999; display: flex; align-items: center; gap: 8px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; transition: transform 0.2s;"
+        style="position: fixed; bottom: 20px; right: 20px; background: rgba(0,0,0,0.8); color: var(--error); border: 2px solid var(--error); padding: 12px 24px; border-radius: 50px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(255,82,82,0.2); z-index: 9999; display: flex; align-items: center; gap: 8px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; transition: transform 0.2s, background 0.2s, color 0.2s; backdrop-filter: blur(10px);"
         aria-label="Quick Safe Exit" title="Click or press ESC 3 times quickly to redirect to Google"
-        onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-        Safe Exit
+        onmouseover="this.style.transform='scale(1.05)'; this.style.background='var(--error)'; this.style.color='#FFFFFF';"
+        onmouseout="this.style.transform='scale(1)'; this.style.background='rgba(0,0,0,0.8)'; this.style.color='var(--error)';">
+        <i class="ph ph-door-open" style="font-size: 1.2rem;"></i> Safe Exit
     </button>
 
     <!-- Client-side Logic -->

@@ -23,9 +23,16 @@
         align-items: center;
         justify-content: center;
         box-shadow: 0 0 30px rgba(255, 152, 0, 0.2);
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
         /* Box breathing 16s cycle: Inhale(4)-Hold(4)-Exhale(4)-Hold(4) */
         animation: breatheCycle 16s linear infinite;
+        animation-play-state: paused;
+        cursor: pointer;
+        transition: box-shadow 0.3s ease;
+    }
+
+    .breathe-circle:hover {
+        box-shadow: 0 0 45px rgba(255, 152, 0, 0.5);
     }
 
     .breathe-text {
@@ -66,6 +73,7 @@
     .breathe-text::after {
         content: "Inhale";
         animation: textContent 16s steps(1) infinite;
+        animation-play-state: paused;
     }
 
     @keyframes textContent {
@@ -98,12 +106,39 @@
 </div>
 
 <div class="breathe-container animate-fade-up delay-1">
-    <div class="breathe-circle">
-        <div class="breathe-text"></div>
+    <div class="breathe-circle" id="breathe-circle">
+        <div class="breathe-text" id="breathe-text"></div>
     </div>
+    <p class="text-secondary" id="breathe-status"
+        style="font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase;">Click circle to begin</p>
 </div>
 
 <div class="text-center mt-2 animate-fade-up delay-2">
-    <a href="{{ url_for('modules.list_modules') }}" class="btn btn-outline" style="width: auto;">Return to Modules</a>
+    <a href="{{ url_for('modules.list_modules') }}" class="btn btn-outline" style="width: auto;"><i
+            class="ph ph-arrow-left"></i> Return to Modules</a>
 </div>
+
+<script>
+    const breatheCircle = document.getElementById('breathe-circle');
+    const breatheStatus = document.getElementById('breathe-status');
+    const breatheStyleSheet = document.createElement('style');
+    document.head.appendChild(breatheStyleSheet);
+
+    let isBreathing = false;
+
+    breatheCircle.addEventListener('click', () => {
+        isBreathing = !isBreathing;
+
+        if (isBreathing) {
+            breatheCircle.style.animationPlayState = 'running';
+            // Inject a running state forcefully into the CSS pseudo element logic parsing
+            breatheStyleSheet.innerHTML = `.breathe-text::after { animation-play-state: running !important; }`;
+            breatheStatus.innerText = "Click circle to pause output";
+        } else {
+            breatheCircle.style.animationPlayState = 'paused';
+            breatheStyleSheet.innerHTML = `.breathe-text::after { animation-play-state: paused !important; }`;
+            breatheStatus.innerText = "Paused. Click circle to resume";
+        }
+    });
+</script>
 {% endblock %}

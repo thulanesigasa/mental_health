@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}5-4-3-2-1 Grounding Technique - Serenity{% endblock %}
+
+{% block content %}
+<div class="mb-2 text-center animate-fade-up">
+    <h2 style="font-weight: 500;">5-4-3-2-1 Grounding</h2>
+    <p class="text-secondary" style="max-width: 600px; margin: 0 auto;">Use this interactive checklist during moments of
+        acute anxiety or panic to systematically bring your physical focus back directly into the present moment.</p>
+</div>
+
+<div class="modules-grid animate-fade-up delay-1">
+    <div class="module-card" style="grid-column: 1 / -1; max-width: 600px; margin: 0 auto; width: 100%;">
+
+        <div class="grounding-step mb-2" data-step="1">
+            <h3 style="color: var(--accent-gold); display: flex; align-items: center; gap: 10px; font-weight: 500;"><i
+                    class="ph ph-eye"></i> 5 Things You Can See</h3>
+            <div class="checkbox-list" style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+                {% for i in range(5) %}
+                <label
+                    style="display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--text-primary); transition: all 0.2s;">
+                    <input type="checkbox"
+                        onchange="this.parentElement.style.textDecoration = this.checked ? 'line-through' : 'none'; this.parentElement.style.opacity = this.checked ? '0.5' : '1';">
+                    Identify a distinct object you can see around you right now
+                </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="grounding-step mb-2" data-step="2">
+            <h3 style="color: var(--accent-gold); display: flex; align-items: center; gap: 10px; font-weight: 500;"><i
+                    class="ph ph-hand-palm"></i> 4 Things You Can Feel</h3>
+            <div class="checkbox-list" style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+                {% for i in range(4) %}
+                <label
+                    style="display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--text-primary); transition: all 0.2s;">
+                    <input type="checkbox"
+                        onchange="this.parentElement.style.textDecoration = this.checked ? 'line-through' : 'none'; this.parentElement.style.opacity = this.checked ? '0.5' : '1';">
+                    Notice a physical texture or temperature you can feel
+                </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="grounding-step mb-2" data-step="3">
+            <h3 style="color: var(--accent-gold); display: flex; align-items: center; gap: 10px; font-weight: 500;"><i
+                    class="ph ph-ear"></i> 3 Things You Can Hear</h3>
+            <div class="checkbox-list" style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+                {% for i in range(3) %}
+                <label
+                    style="display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--text-primary); transition: all 0.2s;">
+                    <input type="checkbox"
+                        onchange="this.parentElement.style.textDecoration = this.checked ? 'line-through' : 'none'; this.parentElement.style.opacity = this.checked ? '0.5' : '1';">
+                    Listen closely and identify a specific background sound
+                </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="grounding-step mb-2" data-step="4">
+            <h3 style="color: var(--accent-gold); display: flex; align-items: center; gap: 10px; font-weight: 500;"><i
+                    class="ph ph-wind"></i> 2 Things You Can Smell</h3>
+            <div class="checkbox-list" style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+                {% for i in range(2) %}
+                <label
+                    style="display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--text-primary); transition: all 0.2s;">
+                    <input type="checkbox"
+                        onchange="this.parentElement.style.textDecoration = this.checked ? 'line-through' : 'none'; this.parentElement.style.opacity = this.checked ? '0.5' : '1';">
+                    Find a subtle scent, or actively recall a favorite smell
+                </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="grounding-step" data-step="5">
+            <h3 style="color: var(--accent-gold); display: flex; align-items: center; gap: 10px; font-weight: 500;"><i
+                    class="ph ph-heart"></i> 1 Good Thing</h3>
+            <div class="checkbox-list" style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+                <label
+                    style="display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--text-primary); transition: all 0.2s;">
+                    <input type="checkbox"
+                        onchange="this.parentElement.style.textDecoration = this.checked ? 'line-through' : 'none'; this.parentElement.style.opacity = this.checked ? '0.5' : '1';">
+                    Acknowledge one deeply positive thing about yourself or your day
+                </label>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="text-center mt-2 animate-fade-up delay-2">
+    <a href="{{ url_for('modules.list_modules') }}" class="btn btn-outline" style="width: auto;"><i
+            class="ph ph-arrow-left"></i> Return to Modules</a>
+</div>
+{% endblock %}

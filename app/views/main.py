@@ -9,3 +9,7 @@ def index():
 @bp.route('/tools/breathe')
 def breathe():
     return render_template('tools/breathe.html')
+
+@bp.route('/tools/grounding')
+def grounding():
+    return render_template('tools/grounding.html')

@@ -2,6 +2,20 @@ from flask import Blueprint, render_template, redirect, url_for, flash, request,
 from app.extensions import db
 from app.models.journal import JournalEntry
 from app.views.user import login_required
+import random
+
+PROMPTS = [
+    "What is one boundary you need to set today?",
+    "What emotions did you suppress this week?",
+    "Describe a moment recently where you felt fully at peace.",
+    "What is something you are letting go of right now?",
+    "How has your inner dialogue sounded today?",
+    "List three things you are deeply grateful for right now.",
+    "What is one small step you can take today to protect your energy?",
+    "If your anxiety could speak, what would it say it needs from you?",
+    "What are you proud of achieving this month, no matter how small?",
+    "Who or what brings you comfort when you feel overwhelmed?"
+]
 
 journal_bp = Blueprint('journal_bp', __name__, url_prefix='/journal')
 
@@ -9,7 +23,8 @@ journal_bp = Blueprint('journal_bp', __name__, url_prefix='/journal')
 @login_required
 def index():
     entries = JournalEntry.query.filter_by(user_id=session['user_id']).order_by(JournalEntry.created_at.desc()).all()
-    return render_template('journal/index.html', entries=entries)
+    daily_prompt = random.choice(PROMPTS)
+    return render_template('journal/index.html', entries=entries, daily_prompt=daily_prompt)
 
 @journal_bp.route('/create', methods=['GET', 'POST'])
 @login_required

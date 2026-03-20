@@ -39,6 +39,9 @@ def create_app(config_class=Config):
     from app.views.journal import journal_bp
     app.register_blueprint(journal_bp)
 
+    from app.views.seo import seo_bp
+    app.register_blueprint(seo_bp)
+
     @app.after_request
     def set_secure_headers(response):
         # Strict Content Security Policy

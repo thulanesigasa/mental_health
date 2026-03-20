@@ -27,4 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('a11y-text-large', root.classList.contains('text-large'));
         });
     }
+
+    const a11yTrigger = document.getElementById('a11y-trigger');
+    const a11yPanel = document.getElementById('a11y-panel');
+
+    if (a11yTrigger && a11yPanel) {
+        a11yTrigger.addEventListener('click', () => {
+            a11yPanel.style.display = a11yPanel.style.display === 'none' ? 'flex' : 'none';
+        });
+    }
 });
